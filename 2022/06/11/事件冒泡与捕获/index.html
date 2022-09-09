@@ -5,14 +5,19 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>事件冒泡与捕获 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="首先我们要了解下什么是事件，事件流？ 事件：文档或浏览器窗口中发生的一些特定的交互瞬间 事件流：页面触发一个事件时，会按照一定的顺序来响应事件，事件的响应过程就是事件流。  IE和Netscape开发团队居然提出了差不多是完全相反的事件流的概念。IE的事件流是事件冒泡流，而Netscape Communicator的事件流是事件捕获流。  那什么是事件的冒泡与捕获呢？ 事件冒泡：事件开始时由最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件冒泡与捕获">
+<meta property="og:url" content="http://example.com/2022/06/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E6%8D%95%E8%8E%B7/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先我们要了解下什么是事件，事件流？ 事件：文档或浏览器窗口中发生的一些特定的交互瞬间 事件流：页面触发一个事件时，会按照一定的顺序来响应事件，事件的响应过程就是事件流。  IE和Netscape开发团队居然提出了差不多是完全相反的事件流的概念。IE的事件流是事件冒泡流，而Netscape Communicator的事件流是事件捕获流。  那什么是事件的冒泡与捕获呢？ 事件冒泡：事件开始时由最">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-11T12:45:28.000Z">
+<meta property="article:modified_time" content="2022-09-08T14:22:19.679Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="前端 开发语言 其他">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,216 +67,88 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/09/hello-world/" class="archive-article-date">
-  <time datetime="2022-09-09T09:06:35.421Z" itemprop="datePublished">Sep 9</time>
+        <section id="main"><article id="post-事件冒泡与捕获" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/06/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E6%8D%95%E8%8E%B7/" class="article-date">
+  <time datetime="2022-06-11T12:45:28.000Z" itemprop="datePublished">2022-06-11</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/09/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      事件冒泡与捕获
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/" class="archive-article-date">
-  <time datetime="2022-09-04T08:38:31.000Z" itemprop="datePublished">Sep 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/">promise浅理解</a>
-    </h1>
-  
+        <span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-08-13T13:05:27.000Z" itemprop="datePublished">Aug 13</time>
-</a>
+<p>首先我们要了解下什么是事件，事件流？</p>
+<p><strong>事件：</strong>文档或浏览器窗口中发生的一些特定的交互瞬间</p>
+<p><strong>事件流</strong>：页面触发一个事件时，会按照一定的顺序来响应事件，事件的响应过程就是事件流。</p>
+<hr>
+<p>IE和Netscape开发团队居然提出了差不多是完全相反的事件流的概念。IE的事件流是事件冒泡流，而Netscape Communicator的事件流是事件捕获流。</p>
+<hr>
+<p>那什么是事件的冒泡与捕获呢？</p>
+<p><strong>事件冒泡：</strong>事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）。————————由深到浅</p>
+<p><strong>事件捕获：</strong>不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。——由浅到深</p>
+<p>对与这两种说法，由于版本的支持问题，建议使用事件冒泡，在有特殊需要时再使用事件捕获。</p>
+<hr>
+<p><strong>举个栗子：</strong></p>
+<p><strong>事件冒泡</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>冒泡<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">const</span> <span class="title function_">bubble</span> =(<span class="params"></span>)=&gt;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,body,<span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,div,<span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;span&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,span,<span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">function</span> <span class="title function_">body</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;body&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">function</span> <span class="title function_">div</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;body&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">function</span> <span class="title function_">p</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;span&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">&quot;body&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;span&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>事件捕获</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,body,<span class="literal">true</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,div,<span class="literal">true</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;span&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,span,<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>（补充：监听事件的第三个属性：事件的捕获与冒泡， <strong>为true时捕获，false时冒泡。</strong>）</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/">递归思想（实例:二叉树深度）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-08-07T02:28:45.000Z" itemprop="datePublished">Aug 7</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E6%8D%95%E8%8E%B7/" data-id="cl7u9lwhw001as4mf5ila4tay" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/">动态规划——数组中连续子数组的最大和（类型）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time datetime="2022-07-31T13:02:40.000Z" itemprop="datePublished">Jul 31</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/">力扣剑指算法练习体验总结</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" rel="tag">前端 开发语言 其他</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          node.js初体验
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/05/08/XML%E5%92%8CSVG%E7%9A%84%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">XML和SVG的简单了解</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/" class="archive-article-date">
-  <time datetime="2022-07-16T16:21:00.000Z" itemprop="datePublished">Jul 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/">let const var的区别以及rest参数</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/" class="archive-article-date">
-  <time datetime="2022-07-09T03:42:54.000Z" itemprop="datePublished">Jul 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/">Axios的参数的传递</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-07-03T00:24:24.000Z" itemprop="datePublished">Jul 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/">一周（6月27日-7月3日）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/" class="archive-article-date">
-  <time datetime="2022-06-25T16:23:49.000Z" itemprop="datePublished">Jun 26</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/">package-lock.json的作用以及promise</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/" class="archive-article-date">
-  <time datetime="2022-06-18T15:19:18.000Z" itemprop="datePublished">Jun 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/">node.js初体验</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-  </nav>
 
 </section>
         

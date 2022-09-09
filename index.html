@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/09/hello-world/" data-id="cl7u9j95c0000f8mfgxl67qi7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/09/hello-world/" data-id="cl7u9lwhj000ls4mfht4cgn3b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -113,25 +113,642 @@
 
 
   
+    <article id="post-promise浅理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2022-09-04T08:38:31.000Z" itemprop="datePublished">2022-09-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/">promise浅理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h2 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h2><p>什么是回调函数？</p>
+<p>官方解释：一个被当做参数的函数，即为<strong>回调函数</strong>。</p>
+<p>我的理解就是，我定义的函数但是我没调用，却执行了</p>
+<p>两种回调函数的种类</p>
+<blockquote>
+<p>1).同步回调:<br>理解:立即执行，完全执行完了才结束，不会放入回调队列中<br>例子:数组遍历相关的回调函数/ Promise的excutor函数<br>2). 异步回调:<br>理解:不会立即执行，会放入回调队列中将来执行<br>例子:定时器回调/ ajax回调/ Promise的成功|失败的回调  
+ </p>
+</blockquote>
+<h2 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h2><p>是什么？</p>
+<p>理解</p>
+<p>promise是一步编程中<strong>新</strong>的解决方案，<strong>旧</strong>的解决方案是纯回调函数</p>
+<blockquote>
+<p>具体表达：</p>
+<p>(1)从语法上来说: Promise是一个构造函数 <br>(2)从功能上来说: promise对象用来封装一个异步操作并可以获取其结果 </p>
+</blockquote>
+<p>状态</p>
+<ul>
+<li>由pedding改为resolved</li>
+<li>由pedding改为rejected</li>
+</ul>
+<p>怎样使用？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建一个新的promise对象</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;<span class="comment">//执行器函数</span></span><br><span class="line"><span class="comment">// 2.执行异步操作任务</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> time = <span class="title class_">Date</span>. <span class="title function_">now</span>() <span class="comment">//如果当前时间是偶数就代表成功，否则代表失败</span></span><br><span class="line">    <span class="comment">// 3.1. 如果成功了，调用resolve(value)</span></span><br><span class="line">    <span class="keyword">if</span>(time%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="title function_">resolve</span>( <span class="string">&#x27;成功的数据，time=&#x27;</span> )</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 3.2. 如果失败了，调用reject(reason)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">p.<span class="title function_">then</span>(</span><br><span class="line"><span class="function"><span class="params">value</span> =&gt;</span> &#123; <span class="comment">//接收得到成功的value数据 onResolved</span></span><br><span class="line">    <span class="variable language_">console</span> .1og( <span class="string">&#x27;成功的回调&#x27;</span>，value )</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="params">reason</span> =&gt;</span> &#123;<span class="comment">//接收得到失败的reason数据 onRejected</span></span><br><span class="line"><span class="variable language_">console</span>. <span class="title function_">log</span>( <span class="string">&#x27;失败的回调&#x27;</span>，value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>为什么要使用promise？</p>
+<blockquote>
+<p>1.指定回调函数的方式更加灵活:<br>旧的:必须在启动异步任务前指定<br>promise:启动异步任务=&gt;返回promie对象=&gt;给promise对象绑定回调函数<br>2.支持链式调用可以解决回调地狱问题<br>什么是回调地狱?回调函数嵌套调用，外部回调函数异步执行的结果是嵌套的回调函数执行的条件<br>回调地狱的缺点?不便 于阅读/不便于异常处理<br>解决方案? promise链式调用<br>终极解决方案? async/ await</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/" data-id="cl7u9lwht0012s4mf9lst2r1w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">前端 javascript 开发语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-递归思想（实例!二叉树深度）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/" class="article-date">
+  <time datetime="2022-08-13T13:05:27.000Z" itemprop="datePublished">2022-08-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/">递归思想（实例:二叉树深度）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="什么是递归思想？"><a href="#什么是递归思想？" class="headerlink" title="什么是递归思想？"></a><strong>什么是递归思想？</strong></h1><p>一种通过重复将问题分解为同类的子问题而解决问题的方法，直接或者间接调用自身函数或者方法的算法。简单地说，就是如果在函数中存在着调用函数本身的情况，这种现象就叫递归。</p>
+<hr>
+<h1 id="实质：递归中的”递”就是入栈，”归”就是出栈。"><a href="#实质：递归中的”递”就是入栈，”归”就是出栈。" class="headerlink" title="实质：递归中的”递”就是入栈，”归”就是出栈。"></a><strong>实质：递归中的”递”就是入栈，”归”就是出栈。</strong></h1><p>“递”的意思是将问题拆解成子问题来解决， 子问题再拆解成子子问题，…，直到被拆解的子问题无需再拆分成更细的子问题（即可以求解），</p>
+<p>”归“是说最小的子问题解决了，那么它的上一层子问题也就解决了，上一层的子问题解决了，上上层子问题自然也就解决了</p>
+<hr>
+<h2 id="递归算法的一般形式：-java"><a href="#递归算法的一般形式：-java" class="headerlink" title="递归算法的一般形式：(java)"></a>递归算法的一般形式：(java)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">f</span><span class="params">(mode)</span> &#123;</span><br><span class="line">   <span class="keyword">if</span>(end_condition) <span class="keyword">return</span> end;</span><br><span class="line">    <span class="keyword">return</span> f(mode_small);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经典例题：斐波那契数列，猴子吃桃子 ，等。</p>
+<p>这里我写下我刚做的一道简单的递归算法：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-shen-du-lcof/" title="二叉树的深度">二叉树的深度</a></p>
+<blockquote>
+<p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p>
+</blockquote>
+<p>又题意可知：二叉树的深度 等于 左子树的深度 与右子树的深度 中的 <strong>最大值</strong> +1。</p>
+<p> 终止条件：当 <code>root​</code> 为空，说明已越过叶节点，返回 深度 0</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/" data-id="cl7u9lwi80026s4mf5f0l5c5v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%89%8D%E7%AB%AF-java-%E7%AE%97%E6%B3%95-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">数据结构 前端 java 算法 开发语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-动态规划——数组中连续子数组的最大和（类型）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/" class="article-date">
+  <time datetime="2022-08-07T02:28:45.000Z" itemprop="datePublished">2022-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/">动态规划——数组中连续子数组的最大和（类型）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<blockquote>
+<p>输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。</p>
+<p><strong>输入:</strong> nums = [-2,1,-3,4,-1,2,1,-5,4]<br><strong>输出:</strong> 6<br><strong>解释:</strong> 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
+</blockquote>
+<p>了解了动态规划的思想：在于<strong>拆分子问题，记住过往，减少重复计算</strong>。</p>
+<p>思路：</p>
+<ul>
+<li>穷举分析</li>
+<li>确定边界</li>
+<li>找出规律，确定最优子结构</li>
+<li>写出状态转移方程</li>
+</ul>
+<p>由此可知确定转移方程：</p>
+<p>dp[i] 代表以元素 nums[i]nums[i] 为结尾的连续子数组最大和。</p>
+<p>当 dp[i - 1] &gt;0 时：执行 dp[i] = dp[i-1] + nums[i]；<br>当 dp[i - 1]≤0 时：执行 dp[i] = nums[i]</p>
+<p>用动态规划也可以解之前做过的青蛙跳阶的问题</p>
+<blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 10 级的台阶总共有多少种跳法。</p>
+</blockquote>
+<p>分析可知</p>
+<p>边界为：当台阶数是1的时候或者2的时候，可以明确知道青蛙跳法。所以是f(1),f(2)</p>
+<p>最优子结构：n&gt;=3时，已经呈现出规律 f(n) = f(n-1) + f(n-2)</p>
+<p>转移方程为：</p>
+<p>f(n)={<!-- --></p>
+<p>1      n=1;</p>
+<p>2      n=2;</p>
+<p>f(n-1)+f(n-2)       n&gt;=3</p>
+<p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/" data-id="cl7u9lwi3001ss4mf0kzoas2t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" rel="tag">动态规划 数据结构 算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-力扣剑指算法练习体验总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2022-07-31T13:02:40.000Z" itemprop="datePublished">2022-07-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/">力扣剑指算法练习体验总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>        这个暑假开始认真的去练算法，学前端也要会啊，老为难人了；先从简单的来，每天一道，暑假差不多页做了有四十道了，不过我们用java写算法，暂时还没用javaScript。最开始学的java基础早就忘得差不多了，现在的状态还是，脑子里有思路，不知道应该用什么方法去实现，一点点查找方法，最后才把一道简单的算法题给做出来，真不容易，无奈笑…</p>
+<p>        做了这四十几道，常用的思路就是指针，递归，再去利用栈，链表。刚刚才做过一道，利用递归的方法或者辅助栈的方式，生成二叉树的镜像。现在就简单总结一下吧。</p>
+<p><strong>题目是这样的：</strong></p>
+<blockquote>
+<p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。</p>
+<p>例如输入：</p>
+<p>     4<br>   /   \<br>  2     7<br> / \   / \<br>1   3 6   9<br>镜像输出：</p>
+<p>     4<br>   /   \<br>  7     2<br> / \   / \<br>9   6 3   1</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<blockquote>
+<p>(1)递归</p>
+<p>        终止条件：root为空</p>
+<p>        进行：定义变量temp去暂存root的左节点</p>
+<p>                   运行：递归右节点，将返回值作为左节点</p>
+<p>                              递归左节点，将返回值作为右节点</p>
+<p>(2)辅助栈（队列）</p>
+<p>        终止条件：root为空</p>
+<p>        进行：当前节点弹出，让它的子节点进栈，同时交换子节点，返回根节点</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/" data-id="cl7u9lwi2001ps4mf50nngzs1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E7%AE%97%E6%B3%95/" rel="tag">java javascript 前端 开发语言 算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-let const var的区别以及rest参数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/" class="article-date">
+  <time datetime="2022-07-16T16:21:00.000Z" itemprop="datePublished">2022-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/">let const var的区别以及rest参数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>复习es6，遇到let，想起来这个问题，脑子里还是不太清晰。那就再复习总结一遍吧。</p>
+<ul>
+<li>var</li>
+</ul>
+<blockquote>
+<ol>
+<li><p>用<code>var</code>声明的变量既是全局变量，也是顶层变量</p>
+<p> 注意：顶层对象，在浏览器环境指的是<code>window</code>对象，在 <code>Node</code> 指的是<code>global</code>对象</p>
+</li>
+<li><p> 存在变量提升的情况</p>
+</li>
+<li><p> 能够对一个变量进行多次声明，后面的会覆盖前面的</p>
+</li>
+<li><p> 在函数中使用使用<code>var</code>声明变量时候，该变量是局部的（而如果在函数内不使用<code>var</code>，该变量是全局的）</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li>let</li>
+</ul>
+<blockquote>
+<ol>
+<li> 只在<code>let</code>命令所在的代码块内有效</li>
+<li> 不存在变量提升</li>
+<li> 不允许在相同作用域中重复声明</li>
+</ol>
+</blockquote>
+<ul>
+<li>const</li>
+</ul>
+<blockquote>
+<ol>
+<li> 声明一个只读的常量，一旦声明，常量的值就不能改</li>
+<li> <code>const</code>一旦声明变量，就必须立即初始化，不能留到以后赋值</li>
+<li> 实质是变量指向的那个内存地址所保存的数据不得改动</li>
+</ol>
+</blockquote>
+<p>区别：</p>
+<ul>
+<li>变量提升（var存在，let、const不存在）</li>
+<li>暂时性死区（var不存在，let、const存在）</li>
+<li>块级作用域（var不存在，let、const存在）</li>
+<li>重复声明（var允许，let、const在同一作用域不允许）</li>
+<li>修改声明的变量（var、let可以，const不可以）</li>
+</ul>
+<h1 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a><strong>rest参数</strong></h1><ul>
+<li>   (形式为’…变量名’)，用于获取函数的多余实参用来代替arguments。</li>
+<li>   rest参数只能作为函数的最后一个参数。</li>
+<li>   真正意义上的数组，可以使用数组自带的API。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">a, b, c, ...rest</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(rest);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">fn</span>(a,b,c,d,e);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"><span class="comment">//输出的是&#123;&quot;1&quot;:d,&quot;2&quot;:e&#125;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/" data-id="cl7u9lwhp000us4mf7f2q4nmx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">javascript 开发语言 ecmascript 前端 其他</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Axios的参数的传递" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/" class="article-date">
+  <time datetime="2022-07-09T03:42:54.000Z" itemprop="datePublished">2022-07-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/">Axios的参数的传递</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>封装后端写好的接口，我们使用axios，关于axios请求方式有以下几种：</p>
+<blockquote>
+<ul>
+<li>axios.request(config)</li>
+<li>axios.get(url[, config])</li>
+<li>axios.delete(url[, config])</li>
+<li>axios.head(url[, config])</li>
+<li>axios.post(url[, data[, config]])</li>
+<li>axios.put(url[, data[, config]])</li>
+<li>axios.patch(url[, data[, config]])</li>
+</ul>
+</blockquote>
+<p>方式知道了，传递参数的方式又有很多种，我们要根据后端写的接口去选择合适的传递方式。</p>
+<p>以post请求为例：</p>
+<p>             1.直接传参数对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;post&quot;</span>,</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&quot;http://110.40.212.128:8080/applications/addApp&quot;</span>,</span><br><span class="line">    <span class="attr">params</span>: &#123;</span><br><span class="line">      <span class="attr">appName</span>: req.<span class="property">body</span>.<span class="property">appName</span>,</span><br><span class="line">      <span class="attr">appStuID</span>: req.<span class="property">body</span>.<span class="property">appStuID</span>,</span><br><span class="line">      <span class="attr">appMajor</span>: req.<span class="property">body</span>.<span class="property">appMajor</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>              2.参数写成json形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&quot;post&quot;</span>,</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&quot;http://110.40.212.128:8080/applications/findUserByID&quot;</span>,</span><br><span class="line">  <span class="attr">params</span>: &#123;</span><br><span class="line">    <span class="attr">id</span>: req.<span class="property">body</span>.<span class="property">id</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">cache</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">dataType</span>: <span class="string">&quot;json&quot;</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>·              3.用qs.stringfy(）进行拼接</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios.<span class="title function_">post</span>(</span><br><span class="line">   <span class="string">&quot;http://110.40.212.128:8080/user/addUserBeh&quot;</span>,</span><br><span class="line">   qs.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">    <span class="attr">userName</span>: req.<span class="property">body</span>.<span class="property">userName</span>,</span><br><span class="line">    <span class="attr">userFaculty</span>: req.<span class="property">body</span>.<span class="property">userFaculty</span>,</span><br><span class="line">    <span class="attr">userClass</span>: req.<span class="property">body</span>.<span class="property">userClass</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>当然传递的方式还有很多，目前项目只遇到了这三种，此次项目中这三种也最常用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/" data-id="cl7u9lwhf000fs4mfdqt9cea9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-%E5%89%8D%E7%AB%AF-javascript-node-js-ajax/" rel="tag">大数据 前端 javascript node.js ajax</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-一周（6月27日-7月3日）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/" class="article-date">
+  <time datetime="2022-07-03T00:24:24.000Z" itemprop="datePublished">2022-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/">一周（6月27日-7月3日）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>        这周我们开始了Node项目，前后端分离，前期把静态的页面布局完成，这两天陆陆续续，后端也给我们提供了几个接口，前几天忙于驾照考试，每天只有晚上的时候才能坐下来敲会儿代码。好在紧赶慢赶东西写的也差不多了。这次项目我们采用了封装的ajax—axios，对后端的接口进行封装再利用。</p>
+<p>        说实话，第一次项目组前端组长，刚开始的时候是有些惶恐的，感觉组内有比自己强的同学，自己要是不会咋办。这样想也仅仅是我们还没开始的时候，后来我慢慢觉得，项目组长的责人不仅仅只要帮助小组的其他同学解决写问题，更重要的是，起一个带领的作用，做好和后端及时沟通的工作，让项目更好的去完成。</p>
+<p>        渐渐地，我也不担心自己是否能力不行，就把这次项目当成了一次锻炼自己的机会。不仅仅是学到一些我不知道的知识，还是复习下以前学过但是陌生的知识，还是个人带领同学一起完成项目的能力，我都希望自己可以竭尽自己的所能做好很好。项目为期40天，慢慢来吧。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/" data-id="cl7u9lwhv0018s4mf03tl4gc1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-node-js-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">大数据 node.js 前端 其他</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-package-lock.json的作用以及promise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/" class="article-date">
+  <time datetime="2022-06-25T16:23:49.000Z" itemprop="datePublished">2022-06-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/">package-lock.json的作用以及promise</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>原来：npm5以前，是不会有<code>package-lock.json</code>这个文件，</p>
+<p>现在：npm5以后，当你安装包的时候，npm都会生成或者更新<code>package-lock.json（其中</code>包node_modules中所有包的信息）</p>
+<p>npm5以后的版本安装都不要加<code>--save</code>参数，它会自动保存依赖信息</p>
+<hr>
+<p>作用：</p>
+<ol>
+<li> <code>node_modules</code> 删除后，可以使用npm install重新下载回来，这时<code>package-lock.json就可以</code>锁定版本号，防止自动升级</li>
+</ol>
+<ul>
+<li>重新<code>npm install</code>的时候速度就可以提升</li>
+</ul>
+<hr>
+<p>问题：文件的读取无法判断执行顺序（文件的执行顺序是依据文件的大小来决定的）(异步api无法保证文件的执行顺序)</p>
+<p>解决方案：回调嵌套==&gt;promise(提高了代码的可读性)</p>
+<ul>
+<li>Promise本身不是异步的，但往往都是内部封装一个异步任务</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="comment">// 1 创建Promise容器		resolve:解决   reject：失败</span></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">	fs.<span class="title function_">readFile</span>(<span class="string">&#x27;./a.text&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="keyword">function</span>(<span class="params">err, data</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (err) &#123;</span><br><span class="line">			<span class="comment">// console.log(err);</span></span><br><span class="line">			<span class="comment">// 把容器的Pending状态变为rejected</span></span><br><span class="line">			<span class="title function_">reject</span>(err);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// console.log(data);</span></span><br><span class="line">			<span class="comment">// 把容器的Pending状态变为resolve</span></span><br><span class="line">			<span class="title function_">resolve</span>(<span class="number">1234</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当p1成功了，然后就（then）做指定的操作</span></span><br><span class="line"><span class="comment">// then方法接收的function就是容器中的resolve函数</span></span><br><span class="line">p1</span><br><span class="line">	.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">	&#125;, <span class="keyword">function</span>(<span class="params">err</span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;读取文件失败了&#x27;</span>, err);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/" data-id="cl7u9lwhs000zs4mffpw1fpen" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-node-js-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-npm/" rel="tag">javascript node.js 前端 开发语言 npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-node.js初体验" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/" class="article-date">
+  <time datetime="2022-06-18T15:19:18.000Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/">node.js初体验</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p><strong>node.js安装时就遇到的问题！！！</strong></p>
+<p>对于msi文件的安装，采用window+X，然后点击window终端（管理员），之后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msiexex /pakeage ”msi文件的绝对定位路径“</span><br></pre></td></tr></table></figure>
+
+<p>认识到使用node.js的强大之处！联系到了web服务端。</p>
+<hr>
+<p>认识到服务端与客户端的不同。</p>
+<p><strong>服务端</strong>，是为客户端服务的。服务的内容诸如向客户端提供资源，保存客户端数据。是实现游戏特色化的重要途径，也是最直接可以通过游戏表现出来的技术。</p>
+<p><strong>客户端</strong>，或称为用户端，是指与服务器相对应，为客户提供本地服务的程序。除了一些只在本地运行的应用程序之外，一般安装在普通的客户机上，需要与服务端互相配合运行。</p>
+<p>一般来说，客户端就是我们使用的电脑（包括我们使用的浏览器IE,Firefox）；服务端就是存放网页与数据库数据的服务器。</p>
+<hr>
+<p>之后又了解了npm（node包管理系统），学习了node的模块系统，一些第三方包；以及express框架，大大地提到了我们写代码的效率；art-template模板引擎（<strong>为了使用户界面与业务数据（内容）分离而产生的</strong> ）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/" data-id="cl7u9lwhq000ws4mffurgctu1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%90%E7%BB%B4/" rel="tag">node.js 服务器 运维</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-css3-html/" rel="tag">css css3 html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-%E5%89%8D%E7%AB%AF-p2p/" rel="tag">css 前端 p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css-html5/" rel="tag">html css html5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-%E5%89%8D%E7%AB%AF-javascript/" rel="tag">html 前端 javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E7%AE%97%E6%B3%95/" rel="tag">java javascript 前端 开发语言 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-npm/" rel="tag">javascript node.js 前端 开发语言 npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">javascript 开发语言 ecmascript 前端 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-javascript-%E5%89%8D%E7%AB%AF/" rel="tag">jquery javascript 前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%90%E7%BB%B4/" rel="tag">node.js 服务器 运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">其他 前端 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript/" rel="tag">前端 javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">前端 javascript 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E7%AE%97%E6%B3%95/" rel="tag">前端 javascript 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" rel="tag">前端 开发语言 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" rel="tag">动态规划 数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95-%E5%89%8D%E7%AB%AF-javascript-vscode/" rel="tag">备忘录 前端 javascript vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-node-js-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">大数据 node.js 前端 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-%E5%89%8D%E7%AB%AF-javascript-node-js-ajax/" rel="tag">大数据 前端 javascript node.js ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%89%8D%E7%AB%AF-java-%E7%AE%97%E6%B3%95-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">数据结构 前端 java 算法 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF/" rel="tag">正则表达式 前端 后端</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css-css3-html/" style="font-size: 10px;">css css3 html</a> <a href="/tags/css-%E5%89%8D%E7%AB%AF-p2p/" style="font-size: 10px;">css 前端 p2p</a> <a href="/tags/html-css-html5/" style="font-size: 20px;">html css html5</a> <a href="/tags/html-%E5%89%8D%E7%AB%AF-javascript/" style="font-size: 10px;">html 前端 javascript</a> <a href="/tags/java-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">java javascript 前端 开发语言 算法</a> <a href="/tags/javascript-node-js-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-npm/" style="font-size: 10px;">javascript node.js 前端 开发语言 npm</a> <a href="/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">javascript 开发语言 ecmascript 前端 其他</a> <a href="/tags/jquery-javascript-%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">jquery javascript 前端</a> <a href="/tags/node-js-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%90%E7%BB%B4/" style="font-size: 10px;">node.js 服务器 运维</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 15px;">其他</a> <a href="/tags/%E5%85%B6%E4%BB%96-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">其他 前端 开发语言</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript/" style="font-size: 10px;">前端 javascript</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">前端 javascript 开发语言</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">前端 javascript 算法</a> <a href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">前端 开发语言 其他</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">动态规划 数据结构 算法</a> <a href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95-%E5%89%8D%E7%AB%AF-javascript-vscode/" style="font-size: 10px;">备忘录 前端 javascript vscode</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-node-js-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">大数据 node.js 前端 其他</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-%E5%89%8D%E7%AB%AF-javascript-node-js-ajax/" style="font-size: 10px;">大数据 前端 javascript node.js ajax</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%89%8D%E7%AB%AF-java-%E7%AE%97%E6%B3%95-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">数据结构 前端 java 算法 开发语言</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF/" style="font-size: 10px;">正则表达式 前端 后端</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
     </div>
   </div>
 
@@ -145,6 +762,22 @@
         
           <li>
             <a href="/2022/09/09/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/">promise浅理解</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/">递归思想（实例:二叉树深度）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/">动态规划——数组中连续子数组的最大和（类型）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/">力扣剑指算法练习体验总结</a>
           </li>
         
       </ul>

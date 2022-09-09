@@ -5,14 +5,19 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>promise浅理解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="准备工作：什么是回调函数？ 官方解释：一个被当做参数的函数，即为回调函数。 我的理解就是，我定义的函数但是我没调用，却执行了 两种回调函数的种类  1).同步回调:理解:立即执行，完全执行完了才结束，不会放入回调队列中例子:数组遍历相关的回调函数&#x2F; Promise的excutor函数2). 异步回调:理解:不会立即执行，会放入回调队列中将来执行例子:定时器回调&#x2F; ajax回调&#x2F; Promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="promise浅理解">
+<meta property="og:url" content="http://example.com/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="准备工作：什么是回调函数？ 官方解释：一个被当做参数的函数，即为回调函数。 我的理解就是，我定义的函数但是我没调用，却执行了 两种回调函数的种类  1).同步回调:理解:立即执行，完全执行完了才结束，不会放入回调队列中例子:数组遍历相关的回调函数&#x2F; Promise的excutor函数2). 异步回调:理解:不会立即执行，会放入回调队列中将来执行例子:定时器回调&#x2F; ajax回调&#x2F; Promise">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-04T08:38:31.000Z">
+<meta property="article:modified_time" content="2022-09-08T14:22:19.679Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="前端 javascript 开发语言">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,216 +67,95 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/09/hello-world/" class="archive-article-date">
-  <time datetime="2022-09-09T09:06:35.421Z" itemprop="datePublished">Sep 9</time>
+        <section id="main"><article id="post-promise浅理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2022-09-04T08:38:31.000Z" itemprop="datePublished">2022-09-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/09/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      promise浅理解
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/" class="archive-article-date">
-  <time datetime="2022-09-04T08:38:31.000Z" itemprop="datePublished">Sep 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/">promise浅理解</a>
-    </h1>
-  
+        <span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-08-13T13:05:27.000Z" itemprop="datePublished">Aug 13</time>
-</a>
+<h2 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h2><p>什么是回调函数？</p>
+<p>官方解释：一个被当做参数的函数，即为<strong>回调函数</strong>。</p>
+<p>我的理解就是，我定义的函数但是我没调用，却执行了</p>
+<p>两种回调函数的种类</p>
+<blockquote>
+<p>1).同步回调:<br>理解:立即执行，完全执行完了才结束，不会放入回调队列中<br>例子:数组遍历相关的回调函数/ Promise的excutor函数<br>2). 异步回调:<br>理解:不会立即执行，会放入回调队列中将来执行<br>例子:定时器回调/ ajax回调/ Promise的成功|失败的回调  
+ </p>
+</blockquote>
+<h2 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h2><p>是什么？</p>
+<p>理解</p>
+<p>promise是一步编程中<strong>新</strong>的解决方案，<strong>旧</strong>的解决方案是纯回调函数</p>
+<blockquote>
+<p>具体表达：</p>
+<p>(1)从语法上来说: Promise是一个构造函数 <br>(2)从功能上来说: promise对象用来封装一个异步操作并可以获取其结果 </p>
+</blockquote>
+<p>状态</p>
+<ul>
+<li>由pedding改为resolved</li>
+<li>由pedding改为rejected</li>
+</ul>
+<p>怎样使用？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建一个新的promise对象</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;<span class="comment">//执行器函数</span></span><br><span class="line"><span class="comment">// 2.执行异步操作任务</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> time = <span class="title class_">Date</span>. <span class="title function_">now</span>() <span class="comment">//如果当前时间是偶数就代表成功，否则代表失败</span></span><br><span class="line">    <span class="comment">// 3.1. 如果成功了，调用resolve(value)</span></span><br><span class="line">    <span class="keyword">if</span>(time%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="title function_">resolve</span>( <span class="string">&#x27;成功的数据，time=&#x27;</span> )</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 3.2. 如果失败了，调用reject(reason)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">p.<span class="title function_">then</span>(</span><br><span class="line"><span class="function"><span class="params">value</span> =&gt;</span> &#123; <span class="comment">//接收得到成功的value数据 onResolved</span></span><br><span class="line">    <span class="variable language_">console</span> .1og( <span class="string">&#x27;成功的回调&#x27;</span>，value )</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="params">reason</span> =&gt;</span> &#123;<span class="comment">//接收得到失败的reason数据 onRejected</span></span><br><span class="line"><span class="variable language_">console</span>. <span class="title function_">log</span>( <span class="string">&#x27;失败的回调&#x27;</span>，value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>为什么要使用promise？</p>
+<blockquote>
+<p>1.指定回调函数的方式更加灵活:<br>旧的:必须在启动异步任务前指定<br>promise:启动异步任务=&gt;返回promie对象=&gt;给promise对象绑定回调函数<br>2.支持链式调用可以解决回调地狱问题<br>什么是回调地狱?回调函数嵌套调用，外部回调函数异步执行的结果是嵌套的回调函数执行的条件<br>回调地狱的缺点?不便 于阅读/不便于异常处理<br>解决方案? promise链式调用<br>终极解决方案? async/ await</p>
+</blockquote>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/">递归思想（实例:二叉树深度）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-08-07T02:28:45.000Z" itemprop="datePublished">Aug 7</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/" data-id="cl7u9lwht0012s4mf9lst2r1w" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/">动态规划——数组中连续子数组的最大和（类型）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time datetime="2022-07-31T13:02:40.000Z" itemprop="datePublished">Jul 31</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/">力扣剑指算法练习体验总结</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">前端 javascript 开发语言</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/09/09/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">递归思想（实例:二叉树深度）</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/" class="archive-article-date">
-  <time datetime="2022-07-16T16:21:00.000Z" itemprop="datePublished">Jul 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/">let const var的区别以及rest参数</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/" class="archive-article-date">
-  <time datetime="2022-07-09T03:42:54.000Z" itemprop="datePublished">Jul 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/">Axios的参数的传递</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-07-03T00:24:24.000Z" itemprop="datePublished">Jul 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/">一周（6月27日-7月3日）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/" class="archive-article-date">
-  <time datetime="2022-06-25T16:23:49.000Z" itemprop="datePublished">Jun 26</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/">package-lock.json的作用以及promise</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/" class="archive-article-date">
-  <time datetime="2022-06-18T15:19:18.000Z" itemprop="datePublished">Jun 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/">node.js初体验</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-  </nav>
 
 </section>
         

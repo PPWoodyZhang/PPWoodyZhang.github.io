@@ -5,14 +5,19 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>Flex（弹性布局） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="作用：用来为盒子模型提供最大的灵活性 适用范围：任何一个容器都可以指定为Flex布局，不仅仅是块级元素也可以是行内元素。display：inline-flex 特性：父元素设置为Flex布局之后，子元素的float，clear，vertical-align属性将会消失 首先我们了解一个概念“容器” 采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flex（弹性布局）">
+<meta property="og:url" content="http://example.com/2022/02/26/Flex%EF%BC%88%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作用：用来为盒子模型提供最大的灵活性 适用范围：任何一个容器都可以指定为Flex布局，不仅仅是块级元素也可以是行内元素。display：inline-flex 特性：父元素设置为Flex布局之后，子元素的float，clear，vertical-align属性将会消失 首先我们了解一个概念“容器” 采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-26T12:15:54.000Z">
+<meta property="article:modified_time" content="2022-09-08T14:22:19.680Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="css css3 html">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,216 +67,123 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/09/hello-world/" class="archive-article-date">
-  <time datetime="2022-09-09T09:06:35.421Z" itemprop="datePublished">Sep 9</time>
+        <section id="main"><article id="post-Flex（弹性布局）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/26/Flex%EF%BC%88%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%89/" class="article-date">
+  <time datetime="2022-02-26T12:15:54.000Z" itemprop="datePublished">2022-02-26</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/09/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      Flex（弹性布局）
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/" class="archive-article-date">
-  <time datetime="2022-09-04T08:38:31.000Z" itemprop="datePublished">Sep 4</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/">promise浅理解</a>
-    </h1>
-  
+        <span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-08-13T13:05:27.000Z" itemprop="datePublished">Aug 13</time>
-</a>
+<p><strong>作用</strong>：用来为盒子模型提供最大的灵活性</p>
+<p><strong>适用范围</strong>：任何一个容器都可以指定为Flex布局，不仅仅是块级元素也可以是行内元素。display：inline-flex</p>
+<p><strong>特性</strong>：父元素设置为Flex布局之后，子元素的float，clear，vertical-align属性将会消失</p>
+<p><strong>首先我们了解一个概念“容器”</strong></p>
+<p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
+<p><strong>容器的构成</strong>：</p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。</p>
+<p>主轴的开始位置（与边框的交叉点）叫做<code>main start</code>，结束位置叫做<code>main end</code>；</p>
+<p>交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。项目默认沿主轴排列。</p>
+<p>单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。</p>
+<p><strong>容器的属性：</strong></p>
+<ul>
+<li><p>flex-direction 属性决定主轴的方向（即项目的排列方向）。</p>
+<p>.box {<br> flex-direction: row（起左） | row-reverse（起右） | column（起上） | column-reverse（起下）;<br>}</p>
+</li>
+<li><p>flex-wrap 默认情况下，项目都排在一条线（又称”轴线”）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行</p>
+<p>.box{<br> flex-wrap: nowrap（不换行） | wrap（第一行在上方） | wrap-reverse（第一行在下方）;<br>}</p>
+</li>
+<li><p>flex-flow    <code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
+<p>.box {<br> flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;<br>}</p>
+</li>
+<li><p>justify-content 定义了项目在主轴上的对齐方式</p>
+<p>.box {<br> justify-content: flex-start（左对齐） | flex-end（右对齐） | center（居中）| space-between（两端对齐，项目之间的间隔相等） | space-around（每个项目的间隔相等，项目之间的间隔比项目与边框的间隔大一倍。）;<br>}</p>
+</li>
+<li><p>align-items 定义项目在交叉轴上如何对齐</p>
+<p>.box {<br> align-items: flex-start（起点，即上） | flex-end（下） | center（中点） | baseline（项目第一行文字的基线对齐） | stretch（默认值，如果项目未设置高度或设为auto，将占满整个容器的高度）;<br>}</p>
+<ul>
+<li>align-content 定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</li>
+</ul>
+</li>
+</ul>
+<p>.box {<br>  align-content: flex-start （起点）| flex-end（终点） | center（中点） | space-between（与交叉轴两端对齐，轴线之间的间隔平均分布） | space-around（每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍） | stretch（轴线占满整个交叉轴）;<br>}</p>
+<p><strong>项目的属性：</strong></p>
+<ul>
+<li><p><code>order</code>定义项目的排列顺序。数值越小，排列越靠前，默认为0</p>
+</li>
+<li><p><code>flex-grow</code>定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大</p>
+<p>如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+</li>
+<li><p><code>flex-shrink</code>缩小</p>
+<p>如果所有项目的<code>flex-shrink</code>属性都为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+<p>负值对该属性无效。</p>
+</li>
+<li><p><code>flex-basis</code> 定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。</p>
+<p>.item {<br> flex-basis: &lt;length&gt; | auto; /* default auto */<br>}<br>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+</li>
+<li><p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code></p>
+<p>.item {<br> flex: none | [ &lt;‘flex-grow’&gt; &lt;‘flex-shrink’&gt;? || &lt;‘flex-basis’&gt; ]<br>}该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
+<ul>
+<li><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性</li>
+</ul>
+</li>
+</ul>
+<p>    .item {<br>      align-self: auto | flex-start | flex-end | center | baseline | stretch;<br>     }</p>
+<p>        默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code></p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/">递归思想（实例:二叉树深度）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-08-07T02:28:45.000Z" itemprop="datePublished">Aug 7</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/26/Flex%EF%BC%88%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%89/" data-id="cl7u9lwhh000is4mf1rmn6dzc" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/">动态规划——数组中连续子数组的最大和（类型）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time datetime="2022-07-31T13:02:40.000Z" itemprop="datePublished">Jul 31</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/">力扣剑指算法练习体验总结</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css-css3-html/" rel="tag">css css3 html</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BA%94%E7%94%A8%EF%BC%88%E4%BB%A5%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%B8%BA%E4%BE%8B%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          正则表达式应用（以手机号为例）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/01/16/html%20DOM%E5%85%83%E7%B4%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">html DOM元素</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/" class="archive-article-date">
-  <time datetime="2022-07-16T16:21:00.000Z" itemprop="datePublished">Jul 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/17/let%20const%20var%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Arest%E5%8F%82%E6%95%B0/">let const var的区别以及rest参数</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/" class="archive-article-date">
-  <time datetime="2022-07-09T03:42:54.000Z" itemprop="datePublished">Jul 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/09/Axios%E7%9A%84%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/">Axios的参数的传递</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/" class="archive-article-date">
-  <time datetime="2022-07-03T00:24:24.000Z" itemprop="datePublished">Jul 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/03/%E4%B8%80%E5%91%A8%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%883%E6%97%A5%EF%BC%89/">一周（6月27日-7月3日）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/" class="archive-article-date">
-  <time datetime="2022-06-25T16:23:49.000Z" itemprop="datePublished">Jun 26</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/26/package-lock.json%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8Apromise/">package-lock.json的作用以及promise</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/" class="archive-article-date">
-  <time datetime="2022-06-18T15:19:18.000Z" itemprop="datePublished">Jun 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/18/node.js%E5%88%9D%E4%BD%93%E9%AA%8C/">node.js初体验</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-  </nav>
 
 </section>
         

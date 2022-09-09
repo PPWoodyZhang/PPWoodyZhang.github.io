@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-事件冒泡与捕获" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/06/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E6%8D%95%E8%8E%B7/" class="article-date">
+  <time datetime="2022-06-11T12:45:28.000Z" itemprop="datePublished">2022-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E6%8D%95%E8%8E%B7/">事件冒泡与捕获</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>首先我们要了解下什么是事件，事件流？</p>
+<p><strong>事件：</strong>文档或浏览器窗口中发生的一些特定的交互瞬间</p>
+<p><strong>事件流</strong>：页面触发一个事件时，会按照一定的顺序来响应事件，事件的响应过程就是事件流。</p>
+<hr>
+<p>IE和Netscape开发团队居然提出了差不多是完全相反的事件流的概念。IE的事件流是事件冒泡流，而Netscape Communicator的事件流是事件捕获流。</p>
+<hr>
+<p>那什么是事件的冒泡与捕获呢？</p>
+<p><strong>事件冒泡：</strong>事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）。————————由深到浅</p>
+<p><strong>事件捕获：</strong>不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。——由浅到深</p>
+<p>对与这两种说法，由于版本的支持问题，建议使用事件冒泡，在有特殊需要时再使用事件捕获。</p>
+<hr>
+<p><strong>举个栗子：</strong></p>
+<p><strong>事件冒泡</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>冒泡<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">const</span> <span class="title function_">bubble</span> =(<span class="params"></span>)=&gt;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,body,<span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,div,<span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;span&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,span,<span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">function</span> <span class="title function_">body</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;body&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">function</span> <span class="title function_">div</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;body&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">function</span> <span class="title function_">p</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;span&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">&quot;body&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;span&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>事件捕获</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;body&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,body,<span class="literal">true</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;div&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,div,<span class="literal">true</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;span&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,span,<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>（补充：监听事件的第三个属性：事件的捕获与冒泡， <strong>为true时捕获，false时冒泡。</strong>）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E6%8D%95%E8%8E%B7/" data-id="cl7u9lwhw001as4mf5ila4tay" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" rel="tag">前端 开发语言 其他</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-XML和SVG的简单了解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/08/XML%E5%92%8CSVG%E7%9A%84%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/" class="article-date">
+  <time datetime="2022-05-08T14:57:08.000Z" itemprop="datePublished">2022-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/08/XML%E5%92%8CSVG%E7%9A%84%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/">XML和SVG的简单了解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>什么是XML，对于只学过HTML，CSS，JS的我，不懂。下面就浅浅学下，后期再深入了解。</p>
+<ul>
+<li><p>XML 指可扩展标记语言（_EX_tensible _M_arkup <em>L_anguage），_XML 是独立于软件和硬件的信息传输工具</em></p>
+</li>
+<li><p>XML 是一种_标记语言_，很类似 HTML</p>
+</li>
+<li><p>XML 的设计宗旨是_传输数据_，而非显示数据</p>
+</li>
+<li><p>XML 标签没有被预定义，XML 允许创作者定义自己的标签和自己的文档结构。</p>
+</li>
+<li><p>XML 被设计为具有_自我描述性_。</p>
+</li>
+<li><p>XML 是 <em>W3C 的推荐标准</em></p>
+<h3 id="XML与HTML的区别"><a href="#XML与HTML的区别" class="headerlink" title="XML与HTML的区别"></a>XML与HTML的区别</h3><p>XML 被设计为传输和存储数据，其焦点是数据的内容。</p>
+<p>HTML 被设计用来显示数据，其焦点是数据的外观。</p>
+<p>HTML 旨在显示信息，而 XML 旨在传输信息。</p>
+<h3 id="XML的实质-可以自定义标签的名字"><a href="#XML的实质-可以自定义标签的名字" class="headerlink" title="XML的实质(可以自定义标签的名字)"></a>XML的实质(可以自定义标签的名字)</h3></li>
+</ul>
+<p>XML 没什么特别的。它仅仅是纯文本而已。有能力处理纯文本的软件都可以处理 XML。</p>
+<p>不过，能够读懂 XML 的应用程序可以有<strong>针对性地处理</strong> XML 的标签。标签的功能性意义依赖于<strong>应用程序</strong>的特性。</p>
+<h1 id="SVG标签"><a href="#SVG标签" class="headerlink" title="SVG标签"></a>SVG标签</h1><p>自我理解：就是用XML格式定义的文件，就是用文本文件来表示的可缩放矢量图形</p>
+<p>SVG 是使用 XML 来描述二维图形和绘图程序的语言。可以写在HTML文件里。</p>
+<h3 id="什么是svg"><a href="#什么是svg" class="headerlink" title="什么是svg??"></a>什么是svg??</h3><ul>
+<li><p>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</p>
+</li>
+<li><p>SVG 用来定义用于网络的基于矢量的图形</p>
+</li>
+<li><p>SVG 使用 XML 格式定义图形</p>
+</li>
+<li><p>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失</p>
+</li>
+<li><p>SVG 是万维网联盟的标准</p>
+</li>
+<li><p>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体</p>
+</li>
+</ul>
+<p>svg文件推荐使用.svg作为扩展名</p>
+<p>代码解析：xmlns 属性可定义 SVG 命名空间。</p>
+<p>stroke 和 stroke-width 属性控制如何显示形状的轮廓。我们把圆的轮廓设置为 4px 宽，红色边框。</p>
+<p>fill 属性设置形状内的颜色。</p>
+<h2 id="svg在html中"><a href="#svg在html中" class="headerlink" title="svg在html中"></a>svg在html中</h2><p>SVG 文件可通过以下标签嵌入 HTML 文档：&lt;embed&gt;、&lt;object&gt; 或者 &lt;iframe&gt;。</p>
+<p>SVG的代码可以直接嵌入到HTML页面中，或您可以直接链接到SVG文件。</p>
+<p>（1）&lt;embed src=”circle1.svg” type=”image/svg+xml” /&gt;</p>
+<p>（2）&lt;object data=”circle1.svg” type=”image/svg+xml”&gt;&lt;/object&gt;————不允许使用脚本</p>
+<p>（3）&lt;iframe src=”circle1.svg”&gt;&lt;/iframe&gt;</p>
+<p>（4）<a href="circle1.svg">查看 SVG 文件</a>-——————使用a标签直接连接一个svg文件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/05/08/XML%E5%92%8CSVG%E7%9A%84%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/" data-id="cl7u9lwhi000js4mfcp4z5xj4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">其他 前端 开发语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-项目收尾阶段" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/02/%E9%A1%B9%E7%9B%AE%E6%94%B6%E5%B0%BE%E9%98%B6%E6%AE%B5/" class="article-date">
+  <time datetime="2022-05-02T01:12:03.000Z" itemprop="datePublished">2022-05-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/02/%E9%A1%B9%E7%9B%AE%E6%94%B6%E5%B0%BE%E9%98%B6%E6%AE%B5/">项目收尾阶段</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>     这也快一个月了，项目进行的也差不多了，五一放假，大一的自觉的都来卷了，多数人都在小组，没有休息。毕竟项目没做完，好在昨天下午我把最后的一点写完了，接下来的就是测试了，希望自己写的部分不要出现问题，不然连夜改bug，可怕。写代码不可怕，改才可怕，都快记不得自己在这个月初的时候写的都是些啥了，改的时候还要再去看自己当初写了啥，费劲。</p>
+<p>     这次小组项目合作让我觉得小组每个人之间的配合真的很重要。身边其他小组的同学多次因为成员间的配合几度崩溃，一个人的单打独斗是不得行的。前端人员提出要求，后端人员写好接口，这样前端才能顺利的渲染出页面，不然前端写代码想坐牢，哈哈。很开心，我们项目组的后端很给力，点赞当然我们前端也在我们组长的带领下，有条不紊的每块任务完成，昨天下午基本完成任务。</p>
+<p>        今天五月二日，还有两天考核。紧张起来了，希望自己可以好好发挥，考核前将代码优化，考核时正常发挥，争取留下来，嗯嗯，就这样。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/05/02/%E9%A1%B9%E7%9B%AE%E6%94%B6%E5%B0%BE%E9%98%B6%E6%AE%B5/" data-id="cl7u9lwi9002as4mfg0obda2g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-又是一周总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/23/%E5%8F%88%E6%98%AF%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2022-04-23T14:40:53.000Z" itemprop="datePublished">2022-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/23/%E5%8F%88%E6%98%AF%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/">又是一周总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>        时间过去大半，项目还没交互完成。今天晚上开会，突然觉得自己交互没写啥。我到底忙了些啥，这周发生了点事，心里过不去那个坎，写代码的时候总是想着。觉得自己需要反思一下，写代码不专注，写代码效率不高这个问题。不然之后写代码，明明在一段时间内可以完成的事，我就要花费更久的时间去做，事倍功半。</p>
+<p>        这周对我来说是不寻常的一周，项目几次运行不了，进度有点赶不上，怕拖小组的后腿。自己情感方面也遇到了问题，党课学习考试也在这周终于忙完。感觉自己整天在忙在忙，到最后才发现，每一件事都没有做到自己满意。好在，之后的生活除了上课，没有太多繁琐的事，我可以一直在小组完成我们的项目。一直忙，自我感觉让自己一直忙也算是对自己情感问题的一种逃避吧，但是我实在是没有勇气去接受现实。就让我暂时这样下去吧，说不定，忙着忙着，情感问题就解决了，谁知道呢。希望一切都会变好，一切都能如我所愿。毕竟这周也太水泥了，呜呜呜，哎，不说了，好好过下周。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/23/%E5%8F%88%E6%98%AF%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/" data-id="cl7u9lwi5001ys4mf4mz8d94i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-一周总结(4月17日)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/17/%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93(4%E6%9C%8817%E6%97%A5)/" class="article-date">
+  <time datetime="2022-04-17T01:42:32.000Z" itemprop="datePublished">2022-04-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/17/%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93(4%E6%9C%8817%E6%97%A5)/">一周总结(4月17日)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>      项目进行到一半，前端也都写的差不多了，现在已经开始前后端交互了。昨天晚上拿到接口，试了好久，心里大概对自己写的页面都点想法了。可是最近好忙啊，团支部风采大赛复赛，选修课作业一堆，党课学习，我感觉自己写代码做页面的时间被压缩的真的不剩多少。整天请假，请的我头都是大的。</p>
+<p>      想做的事情太多，不能全部顾得过来，感觉都点力不从心，心里很烦躁。这有什么办法，要求的事情该做还是要做，我只能尽量的挤时间。</p>
+<p>      前后端交互的第一件事，我想着先把thyleamf在学习下，还对数据库的数据进行遍历呈现。</p>
+<p>今天早上的每周学习收获不小，性能优化，想应用于这次的项目上，所以等js写的差不多的时候，就考虑性能的优化，尽自己最大能力把我们第一个项目做好。</p>
+<p>       下午还要去党课模拟考，时间还和心理观影活动的时间冲突了，唉。还要找个人帮我去参加心理观影。希望过了这阵子我就可以闲下来，好好的去敲代码，做页面，去学习啊。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/17/%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93(4%E6%9C%8817%E6%97%A5)/" data-id="cl7u9lwhu0015s4mf13axa160" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-前后端交互做项目" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/10/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92%E5%81%9A%E9%A1%B9%E7%9B%AE/" class="article-date">
+  <time datetime="2022-04-10T10:12:48.000Z" itemprop="datePublished">2022-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/10/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92%E5%81%9A%E9%A1%B9%E7%9B%AE/">前后端交互做项目</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>        这周没有新学什么知识点，主要是我们前端和后段开始交互做项目了，为期一个月，平时课也不少，一直赶着去写我的html页面，尽量给后期的测试留够时间。紧赶慢赶写了三个页面，目前后段还没有把我负责部分的接口给我，所以我写的就是简单的静态页面啦。</p>
+<p>        一起做项目的都是大一的，都是第一次，没有经验，只能摸着石头过河。刚拿到这个项目的时候，说实话，第一感觉，东西好多好难。不知道从何下手，还好在小组组长的带领下，我们很快的将页面进行了分工，其他细节的东西，我们决定写着加着。小组里的每个人都努力的挤时间，争取把这个项目做到最好，毕竟这是我们的一个项目啊，必得好好搞，不是么。</p>
+<p>        昨天晚上将压力给到我们小组的后端大佬，给他们说了自己的需求，相信马上我就可以拿到接口，那个时候我就真的忙起来了。合作做项目，我最最担心的是多个人仓库的管理，万一协调商量不好，导致所有人半个月甚至更久写的东西都没，这可咋办！</p>
+<p>        所以，今天晚上我决定，再对仓库的操作进行学习，一定学会熟练的应用，不拖小组的后腿。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/10/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92%E5%81%9A%E9%A1%B9%E7%9B%AE/" data-id="cl7u9lwi1001ms4mf8mrggvbu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-关于闭包你要知道的" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/02/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E4%BD%A0%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84/" class="article-date">
+  <time datetime="2022-04-02T13:52:44.000Z" itemprop="datePublished">2022-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/02/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E4%BD%A0%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84/">关于闭包你要知道的......</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h3 id="什么是闭包？？"><a href="#什么是闭包？？" class="headerlink" title="什么是闭包？？"></a><strong>什么是闭包？？</strong></h3><p>理解一：闭包是嵌套的内部函数（绝大多数人）</p>
+<p>理解二：包含被引用变量（函数）的对象（少数人）</p>
+<p>我当然就是大多数人的一个，自我感觉第一种更好理解。当然不是说第二种不重要，我们也是需要知道的</p>
+<h3 id="闭包的存亡"><a href="#闭包的存亡" class="headerlink" title="闭包的存亡"></a><strong>闭包的存亡</strong></h3><blockquote>
+<p>闭包产生的条件：（1）函数嵌套</p>
+<p>                     （2）内部函数调用外部函数的变量或函数</p>
+<p>                             （3）外部函数被调用</p>
+</blockquote>
+<p>闭包消失的条件：当内部函数成为垃圾对象的时候（什么是垃圾对象呢？？）</p>
+<blockquote>
+<p>没有引用指向堆区空间的对象成为垃圾对象</p>
+<p>什么条件下成为垃圾对象？？</p>
+<p>                               (1) 匿名对象使用完毕<br>                               (2) 对象被赋值为null<br>                               (3) 对象被重新创建<br>                               (4) 引用所在的方法执行结束</p>
+</blockquote>
+<h3 id="闭包的作用："><a href="#闭包的作用：" class="headerlink" title="闭包的作用："></a>闭包的作用：</h3><p>（1）使函数内部的数据在外部函数执行完之后仍能够存活在内存中（延长局部变量的声明周期）</p>
+<p>（2）让函数外部可以操作函数内部的变量或方法</p>
+<p>（3） 可以避免使用全局变量，防止全局变量污染环境；</p>
+<h3 id="闭包的实例：面试题"><a href="#闭包的实例：面试题" class="headerlink" title="闭包的实例：面试题"></a><strong>闭包的实例：面试题</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params">n, o</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(o);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">fun</span>: <span class="keyword">function</span> (<span class="params">m</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_">fun</span>(m, n)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第一问</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="title function_">fun</span>(<span class="number">0</span>); </span><br><span class="line">a.<span class="title function_">fun</span>(<span class="number">1</span>);</span><br><span class="line">a.<span class="title function_">fun</span>(<span class="number">2</span>);</span><br><span class="line">a.<span class="title function_">fun</span>(<span class="number">3</span>);</span><br><span class="line"><span class="comment">//第二问</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="title function_">fun</span>(<span class="number">0</span>).<span class="title function_">fun</span>(<span class="number">1</span>).<span class="title function_">fun</span>(<span class="number">2</span>).<span class="title function_">fun</span>(<span class="number">3</span>);</span><br><span class="line"><span class="comment">//第三问</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="title function_">fun</span>(<span class="number">0</span>).<span class="title function_">fun</span>(<span class="number">1</span>);</span><br><span class="line">c.<span class="title function_">fun</span>(<span class="number">2</span>); </span><br><span class="line">c.<span class="title function_">fun</span>(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以去思考下每次输出的都是什么？产生了多少次闭包？很有趣！</p>
+<blockquote>
+<p>答案：</p>
+<p>（1）undefined  0  0  0</p>
+<p>解释:   var a = fun(0)将闭包保存，而之后的每一次调用闭包很快产生，又很快消失</p>
+<p>（2）undefined  0  1  2</p>
+<p>解释：整个过程产生的闭包都没有消失，只不过被同名的b给一次次覆盖了</p>
+<p>（3）undefined  0  1  1</p>
+<p>解释：可以结合上面两种产生闭包的方式去向</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/02/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E4%BD%A0%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84/" data-id="cl7u9lwi0001js4mff7rbh96u" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95-%E5%89%8D%E7%AB%AF-javascript-vscode/" rel="tag">备忘录 前端 javascript vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-执行上下文与执行上下文的栈" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/27/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%A0%88/" class="article-date">
+  <time datetime="2022-03-27T03:07:20.000Z" itemprop="datePublished">2022-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/27/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%A0%88/">执行上下文与执行上下文的栈</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>1. 全局执行上下文           </p>
+<blockquote>
+<p> 在执行全局代码前，将window确定为全局上下文==&gt;</p>
+<p> 对全局数据进行预处理(添加var属性，添加方法，和this赋值)==&gt;</p>
+<p> 最后开始执行全局代码</p>
+</blockquote>
+<p>2. 函数执行上下文</p>
+<blockquote>
+<p>在调用函数，执行函数体之前，创建对应的函数上下文对象(虚拟的,存在于栈)==&gt;</p>
+<p>对局部数据进行预处理(添加var属性argument属性，添加方法，和this赋值)==&gt;</p>
+<p>开始执行函数体代码</p>
+</blockquote>
+<h3 id="指行上下文的栈"><a href="#指行上下文的栈" class="headerlink" title="指行上下文的栈"></a>指行上下文的栈</h3><p>首先先介绍下栈的特点：执行上下文对象后进先出，储存所有创建的执行上下文对象</p>
+<blockquote>
+<p>在全局代码执行之前，JS引擎会先创建一个栈去储存接下来代码产生的执行上下文对象==&gt;</p>
+<p>添加全局执行上下文window到栈中==&gt;(进)</p>
+<p>调用函数，创建函数执行上下文对象，添加到栈中==&gt;(进)</p>
+<p>函数执行完后，将栈顶的对象移除==&gt;(出)</p>
+<p>代码执行完之后，栈中只剩下window</p>
+</blockquote>
+<p>注意：当前执行的函数一定是栈顶的函数，接着依次执行接下来的函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">fn2</span>()</span><br><span class="line">    <span class="title function_">fn3</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时栈中最多就会有三个执行上下文对象，fn2,fn3不能同时执行，具有先后顺序</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/27/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%A0%88/" data-id="cl7u9lwi4001vs4mf8o8zhgow" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript/" rel="tag">前端 javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-冒泡排序（数组排序）和贪心算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/19/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%88%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%EF%BC%89%E5%92%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2022-03-19T09:44:13.000Z" itemprop="datePublished">2022-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/19/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%88%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%EF%BC%89%E5%92%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">冒泡排序（数组排序）和贪心算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>**        学习冒泡排序，首先我们通过了解冒泡排序的本质，然后知道它的运行流程，再进行分析，最后写出简单的代码进行练习。**</p>
+<p><strong>关键记住：双重for循环</strong></p>
+<p><strong>本质：</strong>一种算法，把一系列的数据按照一定的顺序进行排序显示（从大到小或从小到大）</p>
+<p><strong>运行：</strong>重复地走访要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来，走访数列 的工作是重复地进行知道没有再需要交换。</p>
+<p>**分析： **（1）一共需要的趟数，用外层for循环</p>
+<p>                           趟数=数组长度-1</p>
+<p>            （2）每一趟交换次数，用里层for循环</p>
+<p>                           若当前是第i趟：每趟交换的次数=数组长度-i-1</p>
+<p>            （3）交换两个变量</p>
+<p><strong>案例：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>-<span class="number">1</span>;i++)&#123; <span class="comment">//外层for循环</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr.<span class="property">length</span>-i-<span class="number">1</span>;j++)&#123; <span class="comment">//内层for循环</span></span><br><span class="line">        <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;  <span class="comment">//当前为升序，当然此处也可使用&lt;,输出结果为降序</span></span><br><span class="line">               <span class="keyword">var</span> temp=arr[j];</span><br><span class="line">            arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">            arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">           &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>写了这几周的算法了，一直不理解贪心算法到底是什么，最近考核完了，有时间去了解了解，搜了好多，最后被算法大佬们说成是“常识”，不行，我没有常识，我想要套路，想要方法，结果被算法大佬们告知“没有套路”，哎，这玩意看起来不是好学的啊，所以我就开始了案例一道道来吧。</p>
+<p>最最低级的分饼干问题，无奈笑。。。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> one;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> class 贪心算法 &#123;</span><br><span class="line">		<span class="keyword">static</span> <span class="type">int</span> <span class="title function_">solution</span><span class="params">(<span class="type">int</span>[]children,<span class="type">int</span>[]cookies)</span> &#123;</span><br><span class="line">			<span class="comment">//先对两个数组进行排序</span></span><br><span class="line">			Arrays.sort(children);</span><br><span class="line">			Arrays.sort(cookies);</span><br><span class="line">			<span class="type">int</span> start=<span class="number">0</span>;<span class="comment">//两个指针</span></span><br><span class="line">			<span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;cookies.length&amp;&amp;start&lt;children.length;i++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(cookies[i]&gt;=children[start])&#123;</span><br><span class="line">					start++;</span><br><span class="line">					count++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> count;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就这样，最后来句，贪心仍未解决，练习尚要努力啊！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/19/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%88%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%EF%BC%89%E5%92%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" data-id="cl7u9lwhy001gs4mf30wr3dlg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E7%AE%97%E6%B3%95/" rel="tag">前端 javascript 算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jQuery动态绑定事件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/13/jQuery%E5%8A%A8%E6%80%81%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/" class="article-date">
+  <time datetime="2022-03-13T13:13:18.000Z" itemprop="datePublished">2022-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/13/jQuery%E5%8A%A8%E6%80%81%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/">jQuery动态绑定事件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>说一个这周写前后端交互时遇到的一个印象深刻的问题——动态绑定事件。</p>
+<p>一般我们给节点绑定事件使用的都是这样的形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#btns&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;  </span><br><span class="line">  $(<span class="string">&quot;#myModalTwo&quot;</span>).<span class="title function_">show</span>();</span><br><span class="line">  $(<span class="string">&quot;#idTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">0</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#nameTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">1</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#priceTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">2</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#describeTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">3</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#classingTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">4</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#numberTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">5</span>].<span class="property">innerHTML</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>或者是这样的形式：&lt;button οnclick=”functionname()“&gt;&lt;/button&gt;</p>
+<p>但当我们遇到动态添加的节点，这两种方式就不再起作用了，那么引入今天的主题了，怎样给动态添加的节点绑定事件呢？？？？可以使用下面的jQuery语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#start,#end&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">　　　　<span class="title function_">alert</span>(<span class="string">&quot;The paragraph was clicked.&quot;</span>);</span><br><span class="line"> </span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>应用到我的代码上就是这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#mytable&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>, <span class="string">&quot;.btns&quot;</span>, <span class="keyword">function</span> <span class="title function_">C</span>(<span class="params"></span>) &#123;</span><br><span class="line">  $(<span class="string">&quot;#myModalTwo&quot;</span>).<span class="title function_">show</span>();</span><br><span class="line">  $(<span class="string">&quot;#idTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">0</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#nameTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">1</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#priceTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">2</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#describeTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">3</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#classingTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">4</span>].<span class="property">innerHTML</span>);</span><br><span class="line">  $(<span class="string">&quot;#numberTwo&quot;</span>).<span class="title function_">val</span>(<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">children</span>[<span class="number">5</span>].<span class="property">innerHTML</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样问题就迎刃而解了！！！</p>
+<p>后来我又更深层次的去了解了一下这种on方法动态绑定的用法，常用的可以分为以下两类：</p>
+<p>（1）多个选择器绑定同一个事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#start,#end&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>（2）多个事件绑定同一个函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;p&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;mouseover mouseout&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/13/jQuery%E5%8A%A8%E6%80%81%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6/" data-id="cl7u9lwhl000ps4mf1tb24b1p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery-javascript-%E5%89%8D%E7%AB%AF/" rel="tag">jquery javascript 前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-css3-html/" rel="tag">css css3 html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-%E5%89%8D%E7%AB%AF-p2p/" rel="tag">css 前端 p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css-html5/" rel="tag">html css html5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-%E5%89%8D%E7%AB%AF-javascript/" rel="tag">html 前端 javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E7%AE%97%E6%B3%95/" rel="tag">java javascript 前端 开发语言 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-npm/" rel="tag">javascript node.js 前端 开发语言 npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">javascript 开发语言 ecmascript 前端 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-javascript-%E5%89%8D%E7%AB%AF/" rel="tag">jquery javascript 前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%90%E7%BB%B4/" rel="tag">node.js 服务器 运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">其他 前端 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript/" rel="tag">前端 javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">前端 javascript 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E7%AE%97%E6%B3%95/" rel="tag">前端 javascript 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" rel="tag">前端 开发语言 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" rel="tag">动态规划 数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95-%E5%89%8D%E7%AB%AF-javascript-vscode/" rel="tag">备忘录 前端 javascript vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-node-js-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">大数据 node.js 前端 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-%E5%89%8D%E7%AB%AF-javascript-node-js-ajax/" rel="tag">大数据 前端 javascript node.js ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%89%8D%E7%AB%AF-java-%E7%AE%97%E6%B3%95-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">数据结构 前端 java 算法 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF/" rel="tag">正则表达式 前端 后端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css-css3-html/" style="font-size: 10px;">css css3 html</a> <a href="/tags/css-%E5%89%8D%E7%AB%AF-p2p/" style="font-size: 10px;">css 前端 p2p</a> <a href="/tags/html-css-html5/" style="font-size: 20px;">html css html5</a> <a href="/tags/html-%E5%89%8D%E7%AB%AF-javascript/" style="font-size: 10px;">html 前端 javascript</a> <a href="/tags/java-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">java javascript 前端 开发语言 算法</a> <a href="/tags/javascript-node-js-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-npm/" style="font-size: 10px;">javascript node.js 前端 开发语言 npm</a> <a href="/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">javascript 开发语言 ecmascript 前端 其他</a> <a href="/tags/jquery-javascript-%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">jquery javascript 前端</a> <a href="/tags/node-js-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%90%E7%BB%B4/" style="font-size: 10px;">node.js 服务器 运维</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 15px;">其他</a> <a href="/tags/%E5%85%B6%E4%BB%96-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">其他 前端 开发语言</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript/" style="font-size: 10px;">前端 javascript</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">前端 javascript 开发语言</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">前端 javascript 算法</a> <a href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">前端 开发语言 其他</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">动态规划 数据结构 算法</a> <a href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95-%E5%89%8D%E7%AB%AF-javascript-vscode/" style="font-size: 10px;">备忘录 前端 javascript vscode</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-node-js-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">大数据 node.js 前端 其他</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-%E5%89%8D%E7%AB%AF-javascript-node-js-ajax/" style="font-size: 10px;">大数据 前端 javascript node.js ajax</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%89%8D%E7%AB%AF-java-%E7%AE%97%E6%B3%95-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">数据结构 前端 java 算法 开发语言</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF/" style="font-size: 10px;">正则表达式 前端 后端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/09/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/">promise浅理解</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/">递归思想（实例:二叉树深度）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/">动态规划——数组中连续子数组的最大和（类型）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/">力扣剑指算法练习体验总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

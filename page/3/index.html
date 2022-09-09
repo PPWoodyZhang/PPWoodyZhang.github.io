@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-正则表达式应用（以手机号为例）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BA%94%E7%94%A8%EF%BC%88%E4%BB%A5%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%B8%BA%E4%BE%8B%EF%BC%89/" class="article-date">
+  <time datetime="2022-03-06T03:16:57.000Z" itemprop="datePublished">2022-03-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BA%94%E7%94%A8%EF%BC%88%E4%BB%A5%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%B8%BA%E4%BE%8B%EF%BC%89/">正则表达式应用（以手机号为例）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h3 id="首先我们先了解下什么是正则表达式？"><a href="#首先我们先了解下什么是正则表达式？" class="headerlink" title="首先我们先了解下什么是正则表达式？"></a><strong>首先我们先了解下什么是正则表达式？</strong></h3><p>       ** 正则表达式是使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。**</p>
+<p>        说白了就是一种人为规定的搜索模式规则。</p>
+<p>        正则应用范围很广，可用于所有文本搜索和文本替换的操作。</p>
+<h3 id="语法规范：-正则表达式主体-修饰符-可选"><a href="#语法规范：-正则表达式主体-修饰符-可选" class="headerlink" title="语法规范：/正则表达式主体/修饰符(可选)"></a>语法规范：/正则表达式主体/修饰符(可选)</h3><h3 id="正则表达式的字符串方法-search-和-replace-。"><a href="#正则表达式的字符串方法-search-和-replace-。" class="headerlink" title="正则表达式的字符串方法 : search() 和 replace()。"></a><strong>正则表达式的字符串方法 : search() 和 replace()。</strong></h3><p>search() 方法 用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回子串的起始位置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function myFunction() &#123;</span><br><span class="line">    var str = &quot;hello JavaScript&quot;; </span><br><span class="line">    var n = str.search(&quot;JavaScript&quot;);</span><br><span class="line">    console.log(n);</span><br><span class="line">&#125;</span><br><span class="line">控制台输出：n=6</span><br></pre></td></tr></table></figure>
+
+<p>replace() 方法 用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function myFunction() &#123;</span><br><span class="line">    var str = &quot;hello JavaScript&quot;; </span><br><span class="line">    var txt = str.replace(/JavaScript/i,&quot;jQuery&quot;);</span><br><span class="line">    console.log(txt);</span><br><span class="line">&#125;</span><br><span class="line">控制台输出：hello jQuery</span><br></pre></td></tr></table></figure>
+
+<p>补充：<strong>test</strong>()方法，用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false。</p>
+<h3 id="常用的正则表达式修饰符"><a href="#常用的正则表达式修饰符" class="headerlink" title="常用的正则表达式修饰符"></a><strong>常用的正则表达式修饰符</strong></h3><table><tbody><tr><td>i</td><td>执行对大小写不敏感的匹配。</td></tr><tr><td>g</td><td>执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。</td></tr><tr><td>m</td><td>执行多行匹配。</td></tr></tbody></table>
+
+<h3 id="正则表达式语法"><a href="#正则表达式语法" class="headerlink" title="正则表达式语法"></a>正则表达式语法</h3><p><strong>表达式</strong></p>
+<p>                        [abc]查找括号之间的任何的字符</p>
+<p>                        [0-9]查找任何从0至9的数字</p>
+<p><strong>元字符</strong></p>
+<p>                \d查找数字   \s查找空白字符  \b匹配单词边界</p>
+<p><strong>量词</strong></p>
+<p>n+匹配任何包含至少一个 <em>n</em> 的字符串；n*匹配任何包含零个或多个 <em>n</em> 的字符串。</p>
+<h3 id="案例："><a href="#案例：" class="headerlink" title="案例："></a>案例：</h3><p>        手机号的规则：（1）以1开头（2）第二位是3-9之间的任意数字（3）三位后任意数字9个</p>
+<p>        手机号的正则表达式：  
+  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      var reg =/^1[3-9] [0-9]&#123;9&#125;$/;</span><br><span class="line"></span><br><span class="line">      var myphone=&quot;19536221512&quot;</span><br><span class="line"></span><br><span class="line">      console.log(reg.test(myphone));</span><br><span class="line">输出的结果是：true</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BA%94%E7%94%A8%EF%BC%88%E4%BB%A5%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%B8%BA%E4%BE%8B%EF%BC%89/" data-id="cl7u9lwi60020s4mfh1v79qfh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF/" rel="tag">正则表达式 前端 后端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Flex（弹性布局）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/26/Flex%EF%BC%88%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%89/" class="article-date">
+  <time datetime="2022-02-26T12:15:54.000Z" itemprop="datePublished">2022-02-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/26/Flex%EF%BC%88%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%89/">Flex（弹性布局）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p><strong>作用</strong>：用来为盒子模型提供最大的灵活性</p>
+<p><strong>适用范围</strong>：任何一个容器都可以指定为Flex布局，不仅仅是块级元素也可以是行内元素。display：inline-flex</p>
+<p><strong>特性</strong>：父元素设置为Flex布局之后，子元素的float，clear，vertical-align属性将会消失</p>
+<p><strong>首先我们了解一个概念“容器”</strong></p>
+<p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
+<p><strong>容器的构成</strong>：</p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。</p>
+<p>主轴的开始位置（与边框的交叉点）叫做<code>main start</code>，结束位置叫做<code>main end</code>；</p>
+<p>交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。项目默认沿主轴排列。</p>
+<p>单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。</p>
+<p><strong>容器的属性：</strong></p>
+<ul>
+<li><p>flex-direction 属性决定主轴的方向（即项目的排列方向）。</p>
+<p>.box {<br> flex-direction: row（起左） | row-reverse（起右） | column（起上） | column-reverse（起下）;<br>}</p>
+</li>
+<li><p>flex-wrap 默认情况下，项目都排在一条线（又称”轴线”）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行</p>
+<p>.box{<br> flex-wrap: nowrap（不换行） | wrap（第一行在上方） | wrap-reverse（第一行在下方）;<br>}</p>
+</li>
+<li><p>flex-flow    <code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
+<p>.box {<br> flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;<br>}</p>
+</li>
+<li><p>justify-content 定义了项目在主轴上的对齐方式</p>
+<p>.box {<br> justify-content: flex-start（左对齐） | flex-end（右对齐） | center（居中）| space-between（两端对齐，项目之间的间隔相等） | space-around（每个项目的间隔相等，项目之间的间隔比项目与边框的间隔大一倍。）;<br>}</p>
+</li>
+<li><p>align-items 定义项目在交叉轴上如何对齐</p>
+<p>.box {<br> align-items: flex-start（起点，即上） | flex-end（下） | center（中点） | baseline（项目第一行文字的基线对齐） | stretch（默认值，如果项目未设置高度或设为auto，将占满整个容器的高度）;<br>}</p>
+<ul>
+<li>align-content 定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</li>
+</ul>
+</li>
+</ul>
+<p>.box {<br>  align-content: flex-start （起点）| flex-end（终点） | center（中点） | space-between（与交叉轴两端对齐，轴线之间的间隔平均分布） | space-around（每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍） | stretch（轴线占满整个交叉轴）;<br>}</p>
+<p><strong>项目的属性：</strong></p>
+<ul>
+<li><p><code>order</code>定义项目的排列顺序。数值越小，排列越靠前，默认为0</p>
+</li>
+<li><p><code>flex-grow</code>定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大</p>
+<p>如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+</li>
+<li><p><code>flex-shrink</code>缩小</p>
+<p>如果所有项目的<code>flex-shrink</code>属性都为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+<p>负值对该属性无效。</p>
+</li>
+<li><p><code>flex-basis</code> 定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。</p>
+<p>.item {<br> flex-basis: &lt;length&gt; | auto; /* default auto */<br>}<br>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+</li>
+<li><p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code></p>
+<p>.item {<br> flex: none | [ &lt;‘flex-grow’&gt; &lt;‘flex-shrink’&gt;? || &lt;‘flex-basis’&gt; ]<br>}该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p>
+<ul>
+<li><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性</li>
+</ul>
+</li>
+</ul>
+<p>    .item {<br>      align-self: auto | flex-start | flex-end | center | baseline | stretch;<br>     }</p>
+<p>        默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/26/Flex%EF%BC%88%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%89/" data-id="cl7u9lwhh000is4mf1rmn6dzc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css-css3-html/" rel="tag">css css3 html</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html DOM元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/16/html%20DOM%E5%85%83%E7%B4%A0/" class="article-date">
+  <time datetime="2022-01-16T07:25:36.000Z" itemprop="datePublished">2022-01-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/16/html%20DOM%E5%85%83%E7%B4%A0/">html DOM元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p><strong>元素的添加与移除的两种方法</strong></p>
+<p><strong>（1）</strong>创建新的HTML元素（节点）-appendchild（）方法，将新元素添加到尾部</p>
+<p>        步骤：五步走</p>
+<ol>
+<li>  创建已存在的元素变量（创建&lt;p&gt;元素）  var para=document.creteElement(“p”);</li>
+<li>  为&lt;p&gt;创建一个新的文本节点     var node = document.createTextNode(“这是一个新的段     落。”);</li>
+<li> 将文本节点添加到&lt;p&gt;元素中      para.appendChild(node);</li>
+<li> 查找一个已经存在的元素    var element = document.getElementById(“div1”);</li>
+<li> 将p元素添加到一个已经存在的元素上    element.appendChild(para);</li>
+</ol>
+<p>        &lt;script&gt;<br>        var para = document.createElement(“p”);<br>        var node = document.createTextNode(“这是一个新的段落。”);<br>        para.appendChild(node);<br>        var element = document.getElementById(“div1”);<br>        element.appendChild(para);<br>        &lt;/script&gt;</p>
+<p><strong>（2）</strong>创建新的HTML元素（节点）-insertBefore（）方法，将新元素添加到开始的位置</p>
+<p>        步骤：六步走</p>
+<ol>
+<li><p> 创建已存在的元素变量（创建&lt;p&gt;元素）var para=document.creteElement(“p”);</p>
+</li>
+<li><p> 为&lt;p&gt;创建一个新的文本节点var node = document.createTextNode(“这是一个新的段落。”);</p>
+</li>
+<li><p> 文本节点添加到&lt;p&gt;元素中para.appendChild(node);</p>
+</li>
+<li><p> 查找一个已经存在的元素var element = document.getElementById(“div1”);</p>
+</li>
+<li><p> 确定原来元素的开始位置是哪一个var child = document.getElementById(“p1”);</p>
+</li>
+<li><p>将p元素添加到一个已经存在的元素上，调换位置</p>
+<p> element..insertBefore(para，child);</p>
+<p> &lt;script&gt;<br> var para = document.createElement(“p”);<br> var node = document.createTextNode(“这是一个新的段落。”);<br> para.appendChild(node);<br> <br> var element = document.getElementById(“div1”);<br> var child = document.getElementById(“p1”);<br> element.insertBefore(para, child);<br> &lt;/script&gt;​</p>
+</li>
+</ol>
+<p><strong>移除已存在的元素（关键知道它的父元素）</strong></p>
+<p>        步骤：三步走</p>
+<ol>
+<li> 查找父元素    var parent = document.getElementById(“div1”);</li>
+<li> 查找要删除的元素       var child = document.getElementById(“p1”);</li>
+<li> 把子节点从父元素上删除          parent.removeChild(child);</li>
+</ol>
+<p>     ​&lt;script&gt;<br>     var parent = document.getElementById(“div1”);<br>     var child = document.getElementById(“p1”);<br>     parent.removeChild(child);<br>     &lt;/script&gt;</p>
+<h3 id="替代HTML元素-replaceChild（）"><a href="#替代HTML元素-replaceChild（）" class="headerlink" title="替代HTML元素-replaceChild（）"></a>替代HTML元素-replaceChild（）</h3><p>        步骤：六步走</p>
+<ol>
+<li> 选定集合中的所有P          var para = document.createElement(“p”);</li>
+<li> 确定新的元素           var node = document.createTextNode(“这是一个新的段落。”);</li>
+<li> 将新P添加到集合P       para.appendChild(node);</li>
+<li> 选定一个已经存在的元素        var parent = document.getElementById(“div1”);</li>
+<li> 选定要被替代的元素       var child = document.getElementById(“p1”);</li>
+<li> 最后替换 parent.replaceChild(para, child)；</li>
+</ol>
+<p>     &lt;script&gt;<br>      var para = document.createElement(“p”);<br>      var node = document.createTextNode(“这是一个新的段落。”);<br>      para.appendChild(node);<br>      var parent = document.getElementById(“div1”);<br>      var child = document.getElementById(“p1”);<br>      parent.replaceChild(para, child);<br>     &lt;/script&gt;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/01/16/html%20DOM%E5%85%83%E7%B4%A0/" data-id="cl7u9lwhn000rs4mf7f0k8r2v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html-%E5%89%8D%E7%AB%AF-javascript/" rel="tag">html 前端 javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS浮动篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/12/CSS%E6%B5%AE%E5%8A%A8%E7%AF%87/" class="article-date">
+  <time datetime="2021-12-12T07:15:59.000Z" itemprop="datePublished">2021-12-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/12/CSS%E6%B5%AE%E5%8A%A8%E7%AF%87/">CSS浮动篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="网页布局准则："><a href="#网页布局准则：" class="headerlink" title="网页布局准则："></a>网页布局准则：</h1><h3 id="1-多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动"><a href="#1-多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动" class="headerlink" title="(1)多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动"></a>(1)多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动</h3><h3 id="2-先设置好盒子的大小，之后设置盒子的位置"><a href="#2-先设置好盒子的大小，之后设置盒子的位置" class="headerlink" title="(2)先设置好盒子的大小，之后设置盒子的位置"></a>(2)先设置好盒子的大小，之后设置盒子的位置</h3><p> </p>
+<h2 id="先简单介绍一下浮动的必要性："><a href="#先简单介绍一下浮动的必要性：" class="headerlink" title="先简单介绍一下浮动的必要性："></a>先简单介绍一下浮动的必要性：</h2><p>**        &lt;1&gt;**普通流（标准流/文档流）</p>
+<p>​                标签按照规定好的默认方式排列</p>
+<p>​                1.块级元素独占一行，从上到下排列</p>
+<p>​                2.行内元素从左到右排列，碰到父元素边缘自动换行</p>
+<p>​               3.行内块元素</p>
+<p>**        &lt;2&gt;**浮动</p>
+<p>​                例如：想让多个div放在一行</p>
+<p>​                           可以利用行内块化（display:inline-block,但是块与块之间有默认的空隙）</p>
+<p>​                            但是块间的空隙不好控制，所以引出浮动改变标签默认的排列方式（块之间没有空隙）。</p>
+<p>                                   <strong>语法：选择器 {float： 属性值;}</strong></p>
+<p>**                                   属性值有none(默认为不浮动)，left，right。**</p>
+<h2 id="浮动的特性"><a href="#浮动的特性" class="headerlink" title="浮动的特性:"></a>浮动的特性:</h2><p>(1)浮动的元素会脱离标准流（简称为“脱标”）</p>
+<p>​    *脱离标准普通流的控制（浮）移动到指定的位置（动）—脱标</p>
+<p>​    *浮动的盒子不在保留原来的位置，其他盒子会占原来的位置，形成叠加</p>
+<p>(2)浮动的元素在一行内显示并且元素的顶部对齐(宽度不够则换行)</p>
+<p>(3)浮动的元素会具有行内块元素的特性</p>
+<p>​    任何元素都可以浮动，不管原先是什么模式的元素，添加浮动之后都具有行内块元素相似的特性。</p>
+<p>​    *将行内元素类似转换成行内块元素，不需要转换成行内块元素</p>
+<p>    *将块级元素类似转换称行内块元素，若不设置宽度，则块的宽度取决于盒子内部的快读（行内块元素的特性）</p>
+<h2 id="浮动布局的两个注意点："><a href="#浮动布局的两个注意点：" class="headerlink" title="浮动布局的两个注意点："></a>浮动布局的两个注意点：</h2><p>（1）浮动与标准流的父盒子搭配</p>
+<p>​            先用标准流的父元素排列上下位置，之后内部子元素采取浮动排列左右位置。</p>
+<p>            即“浮动元素经常与标准流父级搭配使用”</p>
+<p>（2）如果一个元素浮动了，理论上其余的兄弟元素也要浮动。</p>
+<p>​            浮动的标准流只会影响浮动盒子后面的标准流，不会影响前面的标准流。</p>
+<h2 id="清除浮动："><a href="#清除浮动：" class="headerlink" title="清除浮动："></a>清除浮动：</h2><p>                        为什么要清除浮动？</p>
+<p>                    （1）父盒子的高度不一定定义，可以用子盒子来撑开父盒子</p>
+<p>​                    （2）若子盒子浮动了（子盒子浮动影响了下面的布局）</p>
+<p>                             加之不给父盒子高度出现的问题，元素浮动则不占位置，则父元素高度为0</p>
+<p>清除浮动的本质：在父盒子没有给出高度的情况下，清除浮动元素造成的影响</p>
+<p>                                    CSS语法：</p>
+<p>​                                        选择器（clear：属性;）</p>
+<p>​                                        属性值：left，right，both(同时清除左右浮动元素)</p>
+<p>                                        清除浮动的策略：闭合浮动</p>
+<h2 id="其他清除浮动的方法："><a href="#其他清除浮动的方法：" class="headerlink" title="其他清除浮动的方法："></a>其他清除浮动的方法：</h2><p>(1)额外标签发也称为隔墙法</p>
+<p>​    即在浮动元素末尾添加一个空的标签</p>
+<p>&lt;div style=”clear.both”&gt;&lt;/div&gt;div&gt;或者是其他标签&lt;/br&gt;</p>
+<p>​    优点：通俗易懂，书写方便。</p>
+<p>​    缺点：添加许多无意义的标签，机构化差。</p>
+<p>​    注意：要求这个新的空标签必须是块级标签。</p>
+<p>(2)父级天机overflow属性</p>
+<p>​    通过给父级添加overflow属性，将其属性值设置为hidden（最常见）、auto或者scroll</p>
+<p>​    overflow： hidden；既可防止外边距合并，清除浮动</p>
+<p>​    优点：代码简洁；</p>
+<p>​    缺点：无法显示溢出的部分</p>
+<p>(3)父级添加after伪元素</p>
+<p>​    额外标签法的升级版，也是给父元素添加（此处省略代码）</p>
+<p>(4)父级添加双伪元素</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/12/CSS%E6%B5%AE%E5%8A%A8%E7%AF%87/" data-id="cl7u9lwhg000gs4mf5dun5fvs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css-%E5%89%8D%E7%AB%AF-p2p/" rel="tag">css 前端 p2p</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-迟来的11月30日笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/01/%E8%BF%9F%E6%9D%A5%E7%9A%8411%E6%9C%8830%E6%97%A5%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2021-12-01T09:12:41.000Z" itemprop="datePublished">2021-12-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/01/%E8%BF%9F%E6%9D%A5%E7%9A%8411%E6%9C%8830%E6%97%A5%E7%AC%94%E8%AE%B0/">迟来的11月30日笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>CSS的三大特性</p>
+<p>1.层叠性</p>
+<p>相同选择器给设置相同的样式，此时一个样式就会覆盖（层叠）另一个冲突的样式。层叠性主要解决样式冲突的问题。</p>
+<p>原则：就近原则，样式不冲突的不会覆盖。</p>
+<p>2.继承性</p>
+<p>CSS中的继承：字标签会继承父标签的某些样式，如文本颜色和字号</p>
+<p>例如：</p>
+<p>&lt;head&gt;<br>&lt;style&gt;<br>    div{<br>        color: pink;<br>    }<br>&lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;div&gt;<br>    &lt;p&gt;前端前端&lt;/p&gt;<br>    &lt;/div&gt;<br>&lt;/body&gt;</p>
+<p>子元素一般继承的属性（text-,font-,line-以及color属性）</p>
+<p>行高的继承表示的特殊形式（不跟单位）:</p>
+<p>&lt;style&gt; body{ font:12px/1.5 ‘Microsoft YaHei’ } div{ font-size:14px;/*1.5即当前元素文字大小的1.5*/ } &lt;/style&gt;</p>
+<p>优点：让&lt;body&gt;中的子元素可以根据自己文字的大小自动调节行高</p>
+<p>3.优先级</p>
+<p>*选择器相同，则执行层属性（就近原则）。</p>
+<p>*选择器不同，则根据选择器权重执行。</p>
+<p>继承或*（0,0,0,0,）&lt;元素选择器（0,0,0,1）&lt;类选择器、伪类选择器)(0,0,1,0)&lt;id选择器(0,1,0,0)&lt;行内样式style=“”(1,0,0,0)&lt;!important 重要的（无穷大）</p>
+<pre><code>\&lt;style&gt;
+</code></pre>
+<p>        .test {<br>            color: red;<br>        }<br>        div {<br>            color: bule!important;<br>        }<br>        #demo{<br>            color: green;<br>        }<br>    &lt;/style&gt;</p>
+<p>注意：1.权重是4组数组组成，但是不会有进制。</p>
+<p>           2.等级判断从左向右，如果某位数值相同，则判断下一 位数值。</p>
+<p>           3.继承的权重是0，如果该元素没有直接选中，不管父元 素权重多高，子元素得到的权重都是0。（先看有没 有被直接选出）（a浏览器默认的样式为蓝色有下划 线，若继承父元素，无效。）</p>
+<p>权重叠加：如果是复合选择器，则会有权重叠加，需要我们去计 算权重。</p>
+<p>例：.nav li{} 0,0,1,0+0,0,01=0,0,1,1</p>
+<p>盒子模型</p>
+<p>（盒子模型、浮动、定位）</p>
+<p>网页布局过程：</p>
+<p>*准备好相关的网页元素，网页元素基本都是盒子</p>
+<p>*利用CSS设置好盒子的样式，然后放置到相应的位置！！！！</p>
+<p>*往盒子里面装内容</p>
+<p>盒子模型：把HTML中的布局元素看成是盒子，也就是一个橙装内 容的容器。</p>
+<p>CSS盒子模型本质是盒子，封装周围的HTML元素，包括:边框(border)，外边距(margin)，内边距(padding)，和实际内容(content)</p>
+<p>&lt;1&gt;border</p>
+<p>组成属性：边框宽度（粗细）、边框样式、边框颜色</p>
+<p>（border-width）（border-style）(border-color)</p>
+<p>*样式：solid(实线)、dashed(虚)、dotted(点)、等等。</p>
+<p>*复合写法：border：width style color；(没有先后顺序)</p>
+<p>*边框的分写：border-top(上边框)：width style color;</p>
+<p>也可利用样式的层叠性(上框红色，其他三条蓝色).</p>
+<pre><code>        \&lt;style&gt;
+</code></pre>
+<p>                div{<br>                    width: 100px;<br>                    height: 100px;<br>                    border: 10px solid blue;<br>                    border-top: 10px soild red;<br>                 }<br>            &lt;/style&gt;</p>
+<p>对表格进行border设置</p>
+<pre><code>    \&lt;style&gt;
+</code></pre>
+<p>            table{<br>                width: 500px;<br>                height: 100px;<br>            }<br>            table,<br>            td，<br>            th{<br>                border: 10px solid pink;<br>                border-collapse:collapase;(合并相邻                 单元格，不然相邻单元格之间的线比较粗)<br>            }<br>        &lt;/style&gt;</p>
+<p>边框会改变盒子的大小</p>
+<pre><code>            \&lt;style&gt;
+</code></pre>
+<p>                    div{<br>                        width: 180px;<br>                        height: 180px（盒子的宽高）<br>                        background: bule;<br>                        border: 10px solid red;<br>                    }<br>                &lt;/style&gt;此盒子的宽，高均为180，而不是200。</p>
+<p>&lt;2&gt;内边距padding</p>
+<p>padding-bottom(方位词): 10px;</p>
+<p>padding的复合属性：</p>
+<p>padding: 5px；(上下左右)</p>
+<p>padding: 5px 10px；(上下为5，左右为10)</p>
+<p>padding: 5px 10px 20px (上为5，左右为10，下为20)</p>
+<p>padding：5px 10px 20px 30px（上右下左）</p>
+<p>**padding影响盒子大小</p>
+<p>如果盒子已经有了宽高，此时在指定内边框，会撑大盒子。</p>
+<p>应用：新浪导航栏练习</p>
+<p>padding不会撑开盒子的情况：盒子没有书写width/height</p>
+<p>&lt;3&gt;内容content</p>
+<p>&lt;4&gt;外边距margin(方位)</p>
+<p>控制盒子与盒子之间的距离。</p>
+<p>应用：可以让块级元素实现水平居中的效果</p>
+<p>（1）盒子必须指定了宽度</p>
+<p>（2）盒子的左右的外边距都设置为auto</p>
+<p>margin: 0 auto;</p>
+<p>补充：</p>
+<p><strong>**</strong>*让行内元素或者行内块元素水平居中：</p>
+<p>直接在加text-align： center；</p>
+<p>***外边距合并（块级元素）</p>
+<p>***对于两个嵌套关系（父子关系）的元素，父元素有上外边 距同时子元素也有上外边距，此时父元素会塌陷较大的外边距值</p>
+<p>解决方案：</p>
+<p>（1）可以为父元素定义上边框（border-color：transpa）</p>
+<p>（2）可以为父元素定义内边距</p>
+<p>（3）可以违法元素添加overflow：hidden</p>
+<p>补充：清除网页自带的内外边距</p>
+<p>&lt;style&gt; *{ padding: 0; margin: 0; } &lt;/style&gt;</p>
+<p>注意：行内元素为了照顾兼容性，尽管只设置左右内外边距，不要设置上下内外边距。但是转换为块级和行内块元素就可以了。</p>
+<p>PS基本操作</p>
+<p>（1）文件——打开</p>
+<p>（2）ctrl+r：打开标尺（视图——标尺）</p>
+<p>（3）右击标尺，把里面的单位改为像素</p>
+<p>（4）Ctrl+（+）可以放大视图Ctrl+（-）可以缩小</p>
+<p>（5）按住空格键，鼠标可以变成小手，拖动视图</p>
+<p>（6）用选取拖动，可以测量大小</p>
+<p>（7）Ctrl+D可以取消选区，或者在旁边空白处单击一下</p>
+<p>圆角边框</p>
+<p>border-radius：length；（圆与边框的交集形成的圆角效果）</p>
+<p>规律：数值越大，弧度越来越大（radius为盒子宽度的一半时为圆）</p>
+<p>&lt;1&gt;参数值可为数值或者百分比</p>
+<p>&lt;2&gt;盒子为正方形，想设置成一个圆，将宽或高修改为50%或 者一半即可</p>
+<p>&lt;3&gt;盒子为长方形，设置为高度的一半就可以做圆角边框</p>
+<p>&lt;4&gt;该属性是简写属性，可以跟四个值，左上、右上、右下、 左下 （跟两个：左上与右下、左下与右上）</p>
+<p>&lt;5&gt;也可设置一个border-top-left-radius:20px;</p>
+<p>盒子阴影</p>
+<p>box-shadow: h-shadow v-shadow blur spread color inset;</p>
+<p>(前两个必需有，且分别为水平，垂直，都允许为负值)</p>
+<p>(后几个可选，分别是模糊距离，阴影的尺寸，阴影的颜色&lt;rgba（0,0,0,.3）&gt;，将外部阴影&lt;outset默认&gt;改为内部阴影）</p>
+<p>原先没有影子，当我们经过盒子的时候就添加阴影效果。</p>
+<p>div（元素标签）：hover {<!-- --></p>
+<p>box-shadow： 10px 10px 10px -4px black；</p>
+<p>}</p>
+<p>文字阴影：</p>
+<p>text-shadow：h-shadow v-shadow （必需）</p>
+<p>blur，color（可选）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/01/%E8%BF%9F%E6%9D%A5%E7%9A%8411%E6%9C%8830%E6%97%A5%E7%AC%94%E8%AE%B0/" data-id="cl7u9lwi70024s4mff4fvfulm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html-css-html5/" rel="tag">html css html5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-11月29日，学习ing...........,跟上PINK老师的步伐" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/29/11%E6%9C%8829%E6%97%A5%EF%BC%8C%E5%AD%A6%E4%B9%A0ing...........,%E8%B7%9F%E4%B8%8APINK%E8%80%81%E5%B8%88%E7%9A%84%E6%AD%A5%E4%BC%90/" class="article-date">
+  <time datetime="2021-11-29T12:36:22.000Z" itemprop="datePublished">2021-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/29/11%E6%9C%8829%E6%97%A5%EF%BC%8C%E5%AD%A6%E4%B9%A0ing...........,%E8%B7%9F%E4%B8%8APINK%E8%80%81%E5%B8%88%E7%9A%84%E6%AD%A5%E4%BC%90/">11月29日，学习ing...........,跟上PINK老师的步伐</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>1.快速格式化代码（emmet语法）</p>
+<p>        设置：保存页面是就自动格式化代码</p>
+<p>      （1）文件—–【首选项】——-【设置】</p>
+<p>      （2）搜索emmet.include</p>
+<p>      （3）在settings.json下的【用户】中添加以下语句：</p>
+<p>        “editor.formationOnType”:true,</p>
+<p>        “editor.formationOnSave”:true</p>
+<p>        只需要设置一次即可，以后都可以自动保存格式化代码</p>
+<p>     （vscode也可使用快捷键：shift+alt+f）</p>
+<p>2.复合选择器（基础选择器组合而成）</p>
+<p>（1）后代选择器（包含选择器）</p>
+<p>        可以选择父元素中的子元素</p>
+<p>        语法：元素1 元素2 （元素3..）{声明样式}（多个标签选择器拼接，元素1是元素2的父元素，结果改变元素2的样式）</p>
+<p>        ol li {声明样式}</p>
+<p>        注意：元素2可以是元素1的子元素，也可为孙辈元素，只要是后代即可。</p>
+<p>        这里的元素可以是任意的选择器。</p>
+<pre><code>                    \&lt;style&gt;
+</code></pre>
+<p>                            ul li{<br>                                color: red;<br>                            }<br>                            .ab li a{<br>                                color: pink;<br>                            }<br>                        &lt;/style&gt;</p>
+<p>（2）子选择器(只能选择作为某元素的最近一级子元素，即亲儿子元素)</p>
+<p>        元素1&gt;元素2{样式声明}</p>
+<p>（3）并集选择器（可以选择多组标签，同时为他们定义相同的样式，通常用于集体声明）</p>
+<p>        元素1，元素2………{声明样式}</p>
+<p>        注意：&lt;1&gt;元素1与元素2之间用英文逗号（可理解为“和”）隔开,最后一个不用逗号。</p>
+<p>                   &lt;2&gt;约定的规范，并集选择器一般竖着写</p>
+<p>（4）伪类选择器（用于向某些选择器添加特殊效果，例如给链接添加特殊效果，或选择第一个，第n个元素）</p>
+<p>        &lt;1&gt;链接伪类选择器</p>
+<p>        a:link /<em>选择所有未被访问的链接</em>/</p>
+<p>        a:visited /<em>选择所有已访问的链接</em>/</p>
+<p>        a:hover /<em>选择鼠标指针位于其上的链接</em>/</p>
+<p>        a:active /<em>选择活动链接（鼠标按下未弹起的链接）</em>/</p>
+<p>        注意：**为确保生效，按照“LVHA”的顺序声明</p>
+<p>        **a链接在浏览器中有默认的样式，所以开发中要单独指定样式。</p>
+<p>实际开发常用样式：</p>
+<pre><code>            \&lt;style&gt;
+</code></pre>
+<p>                    a{<br>                        color: red;<br>                        text-decoratin: none;<br>                    }<br>                    a：hover{<br>                        color: bule;  <br>                        text-decoretion: underline;<br>                    }<br>                &lt;/style&gt;</p>
+<p>&lt;2&gt;focus伪类选择器（用于选取获得焦点的表单元素）</p>
+<p>        焦点就是光标，一般情况&lt;input&gt;类表单元素才能获取，因此这个选择器也主要针对于表单元素来说.</p>
+<pre><code>            \&lt;style&gt;
+</code></pre>
+<p>                    input:focus{<br>                        background-color:yellow;<br>                    }<br>                &lt;/style&gt;</p>
+<p>3.元素的显示模式（元素（标签）以什么方式进行显示，比如&lt;div&gt;自己占一行，或者一行可以放多个&lt;span&gt;)</p>
+<p>&lt;1&gt;块元素（&lt;div&gt;，&lt;h1&gt;,&lt;h6&gt;,&lt;p&gt;,&lt;ul&gt;,）</p>
+<p>        （1）独占一行</p>
+<p>        （2）高度，宽度，外边距以及内边距都可以控制</p>
+<p>        （3）宽度默认是容器（父级宽度）的100%</p>
+<p>        （4）是一个容器及盒子，里面可以放行内或者块级元素</p>
+<p>        注意：文字类的元素不能使用块级元素（&lt;p&gt;&lt;h1&gt;&lt;h6&gt;）</p>
+<p>&lt;2&gt;行内元素/内联元素(&lt;a&gt;,&lt;strong&gt;,&lt;b&gt;,&lt;em&gt;,&lt;i&gt;,&lt;del&gt;,&lt;s&gt;,&lt;ins&gt;,&lt;u&gt;,&lt;span&gt;)</p>
+<p>        (1)相邻的行内元素在一行上，一行可以显示多个</p>
+<p>        (2)高，宽直接设置是无效的</p>
+<p>        (3)默认宽度就是它本身内容的宽度</p>
+<p>        (4)行内的元素只能容纳文本或者其他行内元素</p>
+<p>        注意：链接里面不能再放链接,特殊情况链接&lt;a&gt;里面可以放块级元素，但是给&lt;a&gt;转换一下块级元素更安全</p>
+<p>&lt;3&gt;行内块元素：同时具有块级元素和行内元素的特点&lt;img/&gt;&lt;input/&gt;&lt;td&gt;</p>
+<p>        (1)相邻行内元素可以放在一行，但是之间会有空白间隙（行内）</p>
+<p>        (2)默认宽度就是它本身内容的宽度（行内）</p>
+<p>        (3)高度，行高，外边距以及内边距都可以控制（块级）</p>
+<p>4.CSS的元素显示模式转换（一个模式的元素需要另外一种模式的特性）</p>
+<p>       &lt;1&gt;行内元素转化为块级元素（display:block;）</p>
+<p>        &lt;2&gt;块级元素转化为行内元素（display:inline;）</p>
+<p>        &lt;3&gt;其他元素转化为行内块元素（display:inline-block;）</p>
+<p>5.snipaste工具的使用（截图工具）</p>
+<p>        (1)f1可以截图同时测量大小，设置箭头，书写字符</p>
+<p>        (2)f3在桌面置顶显示</p>
+<p>        (3)点击图片，alt+c可以取色，（按下shift可以切花取色模式）</p>
+<p>      （4）按下esc取消图片的显示</p>
+<p>小技巧：单行文字垂直居中（即垂直方向上文字边距相同）（让文字的行高等于盒子的高度）line-height：**px；</p>
+<p>6.CSS的背景</p>
+<p>       通过背景属性来设置背景颜色，背景图片，背景平铺，背景图片的位置，背景图像的固定等。</p>
+<p>           &lt;1&gt;背景颜色background-color:transparent(默认)/color</p>
+<p>           &lt;2&gt;背景图片background-image(常见于logo或者一些小的装饰的小图片或者是超大的背景图 片,优点是非常便于控制位置，精灵图 也是一种运用场景）</p>
+<p>        background-image: none/url(url[使用绝对或者相对地址指定背景图像]）</p>
+<p>           &lt;3&gt;背景平铺background-repeat（默认情况下，背景图片都是平铺的）</p>
+<p>        background-repeat: repeat/no-repeat/repeat-x/repeat-y;</p>
+<p>        页面元素既可添加背景颜色，也可添加背景图片，只不过背景图片会压着背景颜色<strong>********</strong>*</p>
+<p>          &lt;4&gt;背景图片的位置background-position</p>
+<p>                background-position: x y;(x,y可以使用方位名词或者精确单位)</p>
+<p>        （1）参数是方位名词</p>
+<p>                *则前后的顺序无关，left top和top left的效果一样。</p>
+<p>                *若只指定了一个方位名词，另一个省略，则第二个默认的是居中对齐。</p>
+<p>        （2）参数是精确单位（第一个为X坐标，第二个为Y坐标，若有一个未写，默认为center）</p>
+<p>        （3）参数是混合单位（第一个X，第二为Y）</p>
+<p>&lt;5&gt;背景图像的固定（背景附着，图像是固定或者随着页面的其余部分滚动，常用于后期制作视差滚动的效果）</p>
+<p>        background-attachment： scroll（默认：随着内容的滚动而滚动）/fixed</p>
+<p>*****背景属性的复合写法：简写在一个background中，节约代码。</p>
+<p>        习惯约定顺序：颜色，地址，平铺，滚动，位置</p>
+<p>        例如：background: black url(文件位置) no-repeat fixed center top;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/29/11%E6%9C%8829%E6%97%A5%EF%BC%8C%E5%AD%A6%E4%B9%A0ing...........,%E8%B7%9F%E4%B8%8APINK%E8%80%81%E5%B8%88%E7%9A%84%E6%AD%A5%E4%BC%90/" data-id="cl7u9lwgz0004s4mfdwplhkks" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html-css-html5/" rel="tag">html css html5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-11月28日CSS基础笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/28/11%E6%9C%8828%E6%97%A5CSS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2021-11-28T02:59:35.000Z" itemprop="datePublished">2021-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/28/11%E6%9C%8828%E6%97%A5CSS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">11月28日CSS基础笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>CSS中的属性名和HTML中的属性名有所不同</p>
+<p>css简介：美化页面（html美化页面很麻烦，css操作方便，也是一门标记语言）</p>
+<p>css语法规范：css规则由两部分组成：选择器，一条或者多条声明</p>
+<p>一般写在&lt;head&gt;与&lt;/head&gt;之间，用&lt;style&gt;&lt;/style&gt;,模板是 选择器{样式}</p>
+<p>选择器是用于指定Css样式的html标签</p>
+<p>属性与属性值以“键值对”的形式出现color：red；《分号结束，非常重要》</p>
+<p>CSS的代码风格（良好的习惯）：</p>
+<p>1.样式格式书写</p>
+<p>&lt;1&gt;紧凑格式 h3 {color: red;font-size: 12px;}</p>
+<p>&lt;2&gt;(推荐)展开格式 h3 {<!-- --></p>
+<p>color: pink;</p>
+<p>font-size: 12px;</p>
+<p>}</p>
+<p>2.样式大小写(采用小写)</p>
+<p>3.空格规范</p>
+<p>&lt;1&gt;属性值前面，冒号后面，保留一个空格</p>
+<p>&lt;2&gt;选择器（标签）和大括号中间保留空格</p>
+<p>CSS的基础选择器：</p>
+<p>作用：根据不同的需求把不同的标签选出来（选择标签）</p>
+<p>1.基础选择器（由单个选择器组成）</p>
+<p>&lt;1&gt;标签选择器（html标签名称作为选择器,把一类标签全部选择出来，所有的&lt;p&gt;）</p>
+<p>《优点》：快速为页面中同类型的标签统一设置样式</p>
+<p>《缺点》:不能具体到一类中的某一个</p>
+<p>&lt;style&gt;</p>
+<p>标签名{<!-- --></p>
+<p>属性名1：属性值1；</p>
+<p>属性名2：属性值2；</p>
+<p>………</p>
+<p>}</p>
+<p>&lt;/style&gt;</p>
+<p>&lt;2&gt;类选择器</p>
+<p>《优点》：一类标签中单独的选一个或几个</p>
+<p>&lt;style&gt;</p>
+<p>.类名（一般不用html标签名来给类起名，长名称或词组可以用中横线来为选择器命名，不要使用纯数字、中文等命名。尽量使用英文字母来表示）</p>
+<p>{<!-- --></p>
+<p>属性1：属性值1；</p>
+<p>………….</p>
+<p>}</p>
+<p>&lt;/style&gt;</p>
+<pre><code>                \&lt;div class=&#39;red（类名）&#39;&gt;变红色\&lt;/div&gt;
+</code></pre>
+<p>类选择器的口诀：样式点定义，结构类（class）调用 ， 一个或多个，开发最常用</p>
+<p>类选择器的多类名：一个标签有多个类名</p>
+<pre><code>            \&lt;div class=&quot;red font20&quot;&gt;亚瑟\&lt;/div&gt;
+</code></pre>
+<p>要求：1.在class属性中写多个类名</p>
+<p>2.多个类名中间必须用空格隔开</p>
+<p>使用场景：将相同的样式放到一个类中</p>
+<p>这些标签都可以调用这个公共类，然后再调用自己独有的类，节省CSS代码</p>
+<p>&lt;3&gt;id选择器（标有特定id的html元素指定特定的样式）</p>
+<p>html元素以id属性来设置id选择器，CSS中的id选择器以“#”来定义。</p>
+<p>#id名{<!-- --></p>
+<p>属性1：属性值；</p>
+<p>…….</p>
+<p>}</p>
+<p>口诀：样式通过#定义，结构id调用，只能调用一次，别人切勿调用</p>
+<p>姓名是类选择器，身份证号是id选择器（使用次数）</p>
+<p>类选择器在修改样式中用的最多，id选择器一般用于页面唯一性的元素上，经常和Javasript搭配使用</p>
+<p>&lt;4&gt;通配选择器(不需要去调用，自动将所有进行改变)</p>
+<p>使用*(html,span,body,div,li)来定义它表示选取页面中所有的元素（标签）</p>
+<p>&lt;style&gt;</p>
+<p>*{<!-- --></p>
+<p>属性1：属性值；</p>
+<p>}</p>
+<p>&lt;/style&gt;</p>
+<p>2.复合选择器</p>
+<p>CSS字体属性</p>
+<p>CSS Fonts(字体)属性用于定义字体系列，大小，粗细，和文字样式（如斜体）</p>
+<p>1.font-family属性定义文本的字体系列</p>
+<p>p{font-family: ‘微软雅黑（Microsoft YaHei)‘,Arial,Helvetica,’Times New Roman’}；【找对人，做对事】</p>
+<p>各个字体之间必须使用英文状态下的逗号隔开，对于由多个单词构成的字体，要用引号隔开（单双均可）</p>
+<p>尽量使用电脑默认的字体，保证都能显示</p>
+<p>写多个字体，兼容性更好</p>
+<pre><code>\&lt;style&gt;
+    body\&#123;font-family:&#39;Microsoft YaHei&#39;,tahoma,arial;\&#125;
+\&lt;/style&gt;
+</code></pre>
+<p>2.font-size属性定义字体大小</p>
+<p>p{<!-- --></p>
+<p>font-size=20px;</p>
+<p>}</p>
+<p>px(像素)大小是我们网页的最常用单位，谷歌默认显示16px</p>
+<p>可以给body指定整个页面文字的大小，最好设置，不要用浏览器默认</p>
+<p>标题标签比较特殊，需要单独指定文字大小</p>
+<p>3.font-weight属性定义字体粗细</p>
+<p>&lt;head&gt;</p>
+<pre><code>    \&lt;style&gt;
+</code></pre>
+<p>            .bold{<br>               /* font-weight:bold;*/<br>                font-weight:700;(更常用)<br>            }<br>        &lt;/style&gt;</p>
+<p>&lt;/head&gt;</p>
+<p>&lt;body&gt;</p>
+<p>​</p>
+<p>我嫩爹</p>
+<p>​</p>
+<p>&lt;/body&gt;</p>
+<p>特殊情况：标题本身会加粗，不想让其加粗，可以用normal或者400；</p>
+<p>4.font-style属性设置文本的风格</p>
+<p>&lt;style&gt;</p>
+<p>p{<!-- --></p>
+<p>font-style:normal;</p>
+<p>}</p>
+<p>&lt;/style&gt;</p>
+<p>normal:默认值，浏览器显示的标准的字体样式</p>
+<p>italic：浏览器会显示斜体的字体样式</p>
+<p>最常用的是将斜体换成正常的</p>
+<p>em（i）{<!-- --></p>
+<p>font-style：normal；</p>
+<p>}</p>
+<p>_我嫩爹_&gt;</p>
+<p>字体的复合属性（可以把以上文字样式综合来写，节约代码）</p>
+<p>&lt;style&gt; div{ font-style=italic; font-weight=700; font-size=16px; font-family=’Microsoft yahei’ } &lt;/style&gt;</p>
+<p>写成了(简写的形式）div{font：font-style font-weight font-size/line/height font-family;</p>
+<p>}</p>
+<p>div{font:italic 700 16px ‘Microsoft yahei’}</p>
+<p>不需要的属性可省略，但必须保留font-size和font-family，否则font属性将不起作用</p>
+<p>文本属性（文本的颜色，对齐文本，装饰文本，文本缩进，行间距等）</p>
+<p>1.文本颜色</p>
+<p>&lt;style&gt; div{ color;pink; 或者 color:#ff0000（实际用吸色管吸取颜色）; 或者 color：rgb(255,0,0)(红色)</p>
+<p>&lt;/style&gt;</p>
+<p>2.文本对齐</p>
+<p>text-align属性用于设置元素内文本内容的水平对齐方式（左对齐，右对齐，水平居中）</p>
+<p>&lt;style&gt; ​ div{<!-- --></p>
+<p>text-align：center(right,left(默认值));</p>
+<p>}</p>
+<p>&lt;/style&gt;</p>
+<p>3.文本装饰</p>
+<p>text-decoration属性规定添加到文本的修饰。可以给文本添加下划线，删除线，上划线等。</p>
+<p>添加和去掉线</p>
+<p>&lt;head&gt;</p>
+<p>&lt;style&gt;<br>    div{<br>        text-decoration: underline;<br>    }<br>    a{<br>    text-decoration:none;<br>    }<br>&lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>        &lt;a href=”#”&gt;我嫩爹&lt;/a&gt;<br>        &lt;/body&gt;</p>
+<p>none(默认没有装饰)，underline（常用），overline（几乎不用），line-through（删除线，不常用）</p>
+<p>4.文本缩进</p>
+<p>text-ingent属性用来指定文本的第一行的缩进，通常是讲段落的首行缩进。</p>
+<p>div{<!-- --></p>
+<p>text-indent:10px(也可为负值，负值往左，正值往右);</p>
+<p>}</p>
+<p>了解单位 em是一个相对单位，就是当前元素（font-size）1个文字的大小，如果当前元素没有设置大小，则会按照父元素（css继承）的一个文字大小。</p>
+<p>5.行间距（上间距，文本间距，下间距）真正的通过改变上下间距来改变。</p>
+<p>p{<!-- --></p>
+<p>line-height：26px；（改变上下间距）</p>
+<p>}</p>
+<p>若文字是16px，line-height=26px，则是对半分。“检查”点击的框即是全部。</p>
+<p>CSS的引入方式(前面只讲了CSS可以写在&lt;style&gt;内)</p>
+<p>根据CSS书写位置（引入方式的不同）CSS样式表可以分为三大类：</p>
+<p>1.内部样式表（嵌入式）</p>
+<p>将CSS写到HTML内部，是将所有的CSS代码抽出来单独放在一个&lt;style&gt;标签中</p>
+<pre><code>\&lt;style&gt;
+</code></pre>
+<p>        div{<br>            color=red；<br>            font：font-style font-weight font-size/line/height font-family;<br>            }<br>    &lt;/style&gt;</p>
+<p>理论上&lt;style&gt;&lt;/style&gt;可以放在HTML文件的任意位置，一般放在&lt;head&gt;&lt;/head&gt;</p>
+<p>优点：代码结构清晰，但是没有实现结构与样式完全分离。</p>
+<p>2.行内样式表（内联样式表）（行内式）</p>
+<p>是在元素标签内部的style属性中设定CSS样式，适合于修改简单样式</p>
+<p>&lt;div style=”color: red; font-size: 12px;”&gt;我嫩爹&lt;/div&gt;</p>
+<p>style其实就是标签的属性，要在双引号中间，可以控制当前行的样式。（不提倡大量使用）</p>
+<p>3.外部样式表（链接式）</p>
+<p>实际开发都是外部样式表，适用于样式比较多的情况。</p>
+<p>优点：多个页面可以使用</p>
+<p>核心：样式单独写到CSS文件中，之后把CSS文件引入到HTML页面中使用。</p>
+<p>两步走：</p>
+<p>《1》建立一个只有样式的.css文件</p>
+<p>div{<!-- --></p>
+<p>color：red；</p>
+<p>}</p>
+<p>《2》使用&lt;link&gt;标签（写进head部分）将.css文件引入.html文件中。</p>
+<p>&lt;link rel=”stylesheet” href=”css文件路径”&gt;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/28/11%E6%9C%8828%E6%97%A5CSS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" data-id="cl7u9lwgs0001s4mfdxrzhymk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html-css-html5/" rel="tag">html css html5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-11月26，27日，充实的前端生活" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/28/11%E6%9C%8826%EF%BC%8C27%E6%97%A5%EF%BC%8C%E5%85%85%E5%AE%9E%E7%9A%84%E5%89%8D%E7%AB%AF%E7%94%9F%E6%B4%BB/" class="article-date">
+  <time datetime="2021-11-28T02:54:52.000Z" itemprop="datePublished">2021-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/28/11%E6%9C%8826%EF%BC%8C27%E6%97%A5%EF%BC%8C%E5%85%85%E5%AE%9E%E7%9A%84%E5%89%8D%E7%AB%AF%E7%94%9F%E6%B4%BB/">11月26，27日，充实的前端生活</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>标签的的书写规范</p>
+<p>1.所有的标签都必须在尖括号里，大部分成对出现(开始，结束)。存在单标签</p>
+<p>2.标签关系：包含（head,title），并列（head,body）</p>
+<p>HTML基本的结构标签（骨架标签）、</p>
+<p>1.HTML标签（根标签，最大）</p>
+<p>2.head标签</p>
+<p>3.title标签（网页标题）</p>
+<p>4.body标签（包含所有主体）</p>
+<p>HTML常用标签</p>
+<p>***标签的语义。根据标签的语义，在合适的地方给一个最合适的标签，可以让页面更清晰（标题标签，段落标签）</p>
+<p>1.标题标签（六个等级）&lt;h&gt;：作为标题使用，重要性递减，一个标题独占一行</p>
+<p>2.段落标签：分段显示&lt;p&gt;:段落与段落之间有空隙</p>
+<p>3.换行标签 强制换行，本身是个单标签，<strong>注意</strong>段落标签和换行标签应用后，段落间有空隙，而行之间没有</p>
+<p>4.文本格式化标签（粗体，斜体，下划线）：突出重要性，比普通的文字更重要</p>
+<p>加粗**文字或者用&lt;b&gt;&lt;/b&gt;**strong更强烈</p>
+<p>斜体&lt;em&gt;&lt;/em&gt;&lt;i&gt;&lt;/i&gt;em更强烈</p>
+<p>删除线张好迪或者用<del>张好迪</del>（del语义更强烈）</p>
+<p>下划线张好迪或者张好迪（ins语义更强烈）</p>
+<p>5.盒子（布局）标签&lt;div&gt;&lt;/div&gt;（div间的内容独自占一行）或者&lt;span&gt;&lt;/span&gt;(span允许放在一 行，多个小盒子放在一行)</p>
+<p>6.图像标签：&lt;img&gt;定义html页面中的图像（单标签）</p>
+<p>src是&lt;img&gt;的必须属性用于指定图像文件的路径和文件名</p>
+<p>图像标签的属性：src，alt（替换），title（提示文本，将鼠标放在图片上显示）,width 图像宽度（像素），height(图像高度)，border（边框，一般通过CSS来设定，不通过属性设定）</p>
+<p>&lt;img src=”img.jpg” alt=”我恁爹” title=”我恁爹” width=”500”, heigth=“500”，border=“15”/&gt;</p>
+<p>路径：（1）目录文件夹（存放我们做页面要用的相关素材，html，images）</p>
+<p>（2）根目录（打开目录文件夹的第一层）</p>
+<p>相对路径：以引用文件所在位置为参考基础，建立的目录路径（图片相当于html页面的位置）</p>
+<p>同一级路径：</p>
+<p>下一级路径：</p>
+<p>上一级路径：(../可以有好多层)</p>
+<p>绝对路径：一般是从盘符开始的目标位置（绝对位置）或者是完整的网络地址</p>
+<p>7.超文本标签&lt;a&gt;从一个页面链接到另一个页面</p>
+<p>&lt;a href=”跳转目标” target=”目标窗口弹出的方式”&gt;文本加图像&lt;/a&gt;</p>
+<p>href用于指定链接目标的url地址(必须属性)</p>
+<p>target默认为_self(在本窗口打开)_blank(新窗口)</p>
+<p>链接的分类</p>
+<p>外部链接：<a href="htttpnkfvv" title="名称">名称</a>a&gt;</p>
+<p>内部链接：网站内部页面之间的相互链接，直接链接内部页面名称<a href="a.html" title="内部界面">内部界面</a>a&gt;\</p>
+<p>空链接：在没有确定的链接目标时<a href="#" title="空标签">空标签</a>a&gt;</p>
+<p>下载标签：href里面的地址是个文件或者是压缩包，会下载这个文件或压缩包</p>
+<p>网页元素链接：网页中各元素都可添加链接（音频，图片，文本，表格）</p>
+<p>锚点链接：点击链接，可以快速定位到页面中的某个位置</p>
+<p>1.第二集&lt;/a&gt;a&gt;</p>
+<p>2.找到目标位置标签，里面添加一个id属性=刚才的名字&lt;h3 id=”two”&gt;第二集&lt;/h3&gt;h3&gt;</p>
+<p>8.注释标签</p>
+<p>&lt;!–hai–&gt;</p>
+<p>9.特殊字符</p>
+<p>空格 &amp;nbsp</p>
+<p>&lt; &amp;it, &gt;&amp;gt</p>
+<p>10.表格标签（展示，显示数据，可读性好）</p>
+<pre><code>\&lt;table&gt;
+    \&lt;tr&gt;
+</code></pre>
+<p>            &lt;td&gt;单元格内的文字&lt;/td&gt;<br>            …<br>        &lt;/tr&gt;<br>        ..<br>    &lt;/table&gt;</p>
+<p>&lt;tr&gt;表示行&lt;td&gt;用于定义表格中的单元格，嵌套在&lt;tr&gt;</p>
+<p>表头单元格标签（加粗居中）&lt;th&gt;姓名&lt;/th&gt;</p>
+<p>&lt;tr&gt;&lt;th&gt;张好迪&lt;/th&gt;&lt;/tr&gt;</p>
+<p>表格的属性（后期用CSS方便）对table进行改变</p>
+<p>· align(元素的对齐方式：left，right，center)</p>
+<p>border（表格单元是否拥有边框，默认为“”没有）</p>
+<p>cellpadding（格与内容之间的空白）像素值</p>
+<p>cellpacing（单元格之间的空白）</p>
+<p>width，height</p>
+<p>表格的结构标签&lt;thead&gt;&lt;tbody&gt;放在&lt;table&gt;中</p>
+<p>&lt;thead&gt;</p>
+<p>&lt;tr&gt;</p>
+<p>&lt;th&gt;加粗&lt;/th&gt;</p>
+<p>&lt;/tr&gt;</p>
+<p>&lt;/thead&gt;</p>
+<p>11.合并单元格</p>
+<p>跨行合并：rowspan=“合并单元格的个数”</p>
+<p>跨列合并：colspan=“合并单元格的个数”</p>
+<p>书写方式： 在目标单元格上写合并代码</p>
+<p>1.跨行：最上侧单元格为目标单元格</p>
+<p>2.跨列：最左侧单元格为目标单元格</p>
+<p>“书写三部曲“（判断，书写，删除）书写：&lt;td colspan=”2”&gt;&lt;/td&gt;</p>
+<p>12.列表标签（用来布局，整齐有序）</p>
+<p>1.无序列表&lt;ul&gt;列表内选项用&lt;li&gt;定义,各列表项并列，没有顺序,&lt;ul&gt;中只能有&lt;li&gt;,&lt;li&gt;中可以有所有元素标签</p>
+<p>​</p>
+<ul>
+<li>列表项1</li>
+<li>列表项2</li>
+<li></li>
+</ul>
+<p>​</p>
+<p>2.有序列表（有一定的顺序进行排列）&lt;ol&gt;表示，列表排序用数字来显示&lt;&lt;ol&gt;中只能有&lt;li&gt;,&lt;li&gt;中可以有所有元素标签</p>
+<p>​</p>
+<ol>
+<li> 蔡徐坤</li>
+<li> 陈立农</li>
+</ol>
+<p>​</p>
+<p>3.自定义列表（大哥带小弟）常用于对术语名词进行解释描述，列表项前没有任何符号</p>
+<p>​</p>
+<p>手机</p>
+<p>vivo</p>
+<p>小米</p>
+<p>​</p>
+<p>（效果有差，CSS解决）&lt;dl&gt;&lt;dt&gt;&lt;dd&gt;</p>
+<p>13.表单标签（收集用户数据信息）常见于注册页面</p>
+<p>表单的组成：1.表单域（一个包含表单元素的区域）&lt;form&gt;会把它范围内的表单元素信息提交给服务 器</p>
+<p>&lt;form action=”url地址(接受并处理数据信息的地址)“ method=”提交方式（get和post）” name=“表单域名称（区别不同的表单域）”&gt; 各种表单元素控件</p>
+<p>&lt;/form&gt;</p>
+<p>2.表单控件（表单元素,即允许用户在表单中输入或选择的内容控件）</p>
+<p>&lt;1&gt;&lt;input&gt;用于收集用户信息</p>
+<p>&lt;input type=”属性值” /&gt;</p>
+<p>type属性值：</p>
+<p>text(用户名：&lt;input type=”text”&gt;)</p>
+<p>password(密码框)</p>
+<p>button（点击按钮，用于通过Javascript（js）启动脚本）（免费获取验证码）</p>
+<p>checkbox（复选框）（未必有一个选项，可以取消）(爱好：吃饭&lt;input type=”checkbox”&gt;)睡觉</p>
+<p>file（输入字段和“浏览”按钮，供文件上传）</p>
+<p>hidden（隐藏的输入字段）</p>
+<p>image（图像形式的提交按钮）</p>
+<p>radio（定义单选按钮）（必须有一个选项）（性别：男&lt;input type=”radio”&gt; 女&lt;input …..&gt;）</p>
+<p>reset（重置按钮，会清除所有数据）</p>
+<p>submit（提交按钮，将表单发送到后台服务器）</p>
+<p>· 属性值：</p>
+<p>name属性(自定义，定义input元素的名称)</p>
+<p>value属性(自定义，规定input元素的值)</p>
+<p>name与value是每个表单元素都有的属性值，主要给后台人员使用</p>
+<p>name是表单元素的名字，要求单选按钮和复选按钮要有相同的name值，才能实现只选一个</p>
+<p>checked属性（checked，规定此input元素首次加载时应当被选中，主要针对单选按钮和复选框，当页面打开的时候默认选中这个按钮）</p>
+<p>maxlength属性（正整数，规定输入字段中的字符的最大长度，一般对输入文本的长度） &lt;2&gt;select下拉表单元素（隐藏展开，节约页面空间）</p>
+<pre><code>                        \&lt;select&gt;
+                        \&lt;option&gt;河南\&lt;/option&gt;
+</code></pre>
+<p>                                &lt;option&gt;湖南&lt;/option&gt; ….                                                        &lt;/select&gt;</p>
+<p>注意：selected=”selected”表示当前项为默认选项</p>
+<p>&lt;3&gt;textarea文本域元素</p>
+<p>网站介绍，留言板（用户输入内容较多，定义多行文本输入的控件）</p>
+<pre><code>                        \&lt;textarea row=&quot;3&quot; cols=&quot;20&quot;&gt;
+                            文本内容
+                        \&lt;/textarea&gt;
+</code></pre>
+<p>实际开发不会用此属性，会利用CSS来改变大小</p>
+<p>3.提示信息</p>
+<p>14.lable标签（为input元素定义标注（标签））</p>
+<p>lable标签用于绑定一个表单元素，当点击&lt;lable&gt;标签内文本时，浏览器会自动将焦点（光标）转到或者选择对应的表单元素上，来增强用户体验。</p>
+<p>&lt;lable for=”sex”&gt;男&lt;/lable&gt;</p>
+<p>&lt;input type=”radio” name=”sex” id=”sex”/&gt; sex自定义</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/28/11%E6%9C%8826%EF%BC%8C27%E6%97%A5%EF%BC%8C%E5%85%85%E5%AE%9E%E7%9A%84%E5%89%8D%E7%AB%AF%E7%94%9F%E6%B4%BB/" data-id="cl7u9lwgl0000s4mfgg1f28tv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html-css-html5/" rel="tag">html css html5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-从这里开始" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/28/%E4%BB%8E%E8%BF%99%E9%87%8C%E5%BC%80%E5%A7%8B/" class="article-date">
+  <time datetime="2021-11-28T02:16:36.000Z" itemprop="datePublished">2021-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/28/%E4%BB%8E%E8%BF%99%E9%87%8C%E5%BC%80%E5%A7%8B/">从这里开始</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>记录攻克前端的每一天！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/28/%E4%BB%8E%E8%BF%99%E9%87%8C%E5%BC%80%E5%A7%8B/" data-id="cl7u9lwhx001es4mf1erc3qi3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-css3-html/" rel="tag">css css3 html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-%E5%89%8D%E7%AB%AF-p2p/" rel="tag">css 前端 p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css-html5/" rel="tag">html css html5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-%E5%89%8D%E7%AB%AF-javascript/" rel="tag">html 前端 javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E7%AE%97%E6%B3%95/" rel="tag">java javascript 前端 开发语言 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-node-js-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-npm/" rel="tag">javascript node.js 前端 开发语言 npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">javascript 开发语言 ecmascript 前端 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery-javascript-%E5%89%8D%E7%AB%AF/" rel="tag">jquery javascript 前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%90%E7%BB%B4/" rel="tag">node.js 服务器 运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">其他 前端 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript/" rel="tag">前端 javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">前端 javascript 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E7%AE%97%E6%B3%95/" rel="tag">前端 javascript 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" rel="tag">前端 开发语言 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" rel="tag">动态规划 数据结构 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95-%E5%89%8D%E7%AB%AF-javascript-vscode/" rel="tag">备忘录 前端 javascript vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-node-js-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" rel="tag">大数据 node.js 前端 其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-%E5%89%8D%E7%AB%AF-javascript-node-js-ajax/" rel="tag">大数据 前端 javascript node.js ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%89%8D%E7%AB%AF-java-%E7%AE%97%E6%B3%95-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" rel="tag">数据结构 前端 java 算法 开发语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF/" rel="tag">正则表达式 前端 后端</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css-css3-html/" style="font-size: 10px;">css css3 html</a> <a href="/tags/css-%E5%89%8D%E7%AB%AF-p2p/" style="font-size: 10px;">css 前端 p2p</a> <a href="/tags/html-css-html5/" style="font-size: 20px;">html css html5</a> <a href="/tags/html-%E5%89%8D%E7%AB%AF-javascript/" style="font-size: 10px;">html 前端 javascript</a> <a href="/tags/java-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">java javascript 前端 开发语言 算法</a> <a href="/tags/javascript-node-js-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-npm/" style="font-size: 10px;">javascript node.js 前端 开发语言 npm</a> <a href="/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">javascript 开发语言 ecmascript 前端 其他</a> <a href="/tags/jquery-javascript-%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">jquery javascript 前端</a> <a href="/tags/node-js-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%90%E7%BB%B4/" style="font-size: 10px;">node.js 服务器 运维</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 15px;">其他</a> <a href="/tags/%E5%85%B6%E4%BB%96-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">其他 前端 开发语言</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript/" style="font-size: 10px;">前端 javascript</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">前端 javascript 开发语言</a> <a href="/tags/%E5%89%8D%E7%AB%AF-javascript-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">前端 javascript 算法</a> <a href="/tags/%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">前端 开发语言 其他</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">动态规划 数据结构 算法</a> <a href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95-%E5%89%8D%E7%AB%AF-javascript-vscode/" style="font-size: 10px;">备忘录 前端 javascript vscode</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-node-js-%E5%89%8D%E7%AB%AF-%E5%85%B6%E4%BB%96/" style="font-size: 10px;">大数据 node.js 前端 其他</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-%E5%89%8D%E7%AB%AF-javascript-node-js-ajax/" style="font-size: 10px;">大数据 前端 javascript node.js ajax</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%89%8D%E7%AB%AF-java-%E7%AE%97%E6%B3%95-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">数据结构 前端 java 算法 开发语言</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF/" style="font-size: 10px;">正则表达式 前端 后端</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/09/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/04/promise%E6%B5%85%E7%90%86%E8%A7%A3/">promise浅理解</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/13/%E9%80%92%E5%BD%92%E6%80%9D%E6%83%B3%EF%BC%88%E5%AE%9E%E4%BE%8B!%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6%EF%BC%89/">递归思想（实例:二叉树深度）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%EF%BC%88%E7%B1%BB%E5%9E%8B%EF%BC%89/">动态规划——数组中连续子数组的最大和（类型）</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/31/%E5%8A%9B%E6%89%A3%E5%89%91%E6%8C%87%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/">力扣剑指算法练习体验总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
