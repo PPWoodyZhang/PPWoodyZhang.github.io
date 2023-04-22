@@ -4,15 +4,60 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>canvas | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="一、canvas 简介 Canvas 中文名叫 “画布”，是 HTML5 新增的一个标签。 Canvas 允许开发者通过 JS在这个标签上绘制各种图案。 Canvas 拥有多种绘制路径、矩形、圆形、字符以及图片的方法。 Canvas 在某些情况下可以 “代替” 图片。 Canvas 可用于动画、游戏、数据可视化、图片编辑器、实时视频处理等领域。  &lt;canvas&gt; 是 HTML5 新增">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas">
+<meta property="og:url" content="http://example.com/2023/04/22/canvas/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、canvas 简介 Canvas 中文名叫 “画布”，是 HTML5 新增的一个标签。 Canvas 允许开发者通过 JS在这个标签上绘制各种图案。 Canvas 拥有多种绘制路径、矩形、圆形、字符以及图片的方法。 Canvas 在某些情况下可以 “代替” 图片。 Canvas 可用于动画、游戏、数据可视化、图片编辑器、实时视频处理等领域。  &lt;canvas&gt; 是 HTML5 新增">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/Canvas_default_grid.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2400420933-5b74dd8f80306_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2347163070-5b74dd8f813a6_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2106846415-5b74dd8f67000_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/3457015746-5b74dd8f72860_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/3832141455-5b74dd8f658df_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2218794221-5b74dd8f43f98_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/3556678928-5b74dd8f1bd2a_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/240px-b_1_big.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/b_2_big.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1544764428-5713-240px-BC3A9zier-2-big.svg-.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/b_3_big.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1544764428-2467-240px-BC3A9zier-3-big.svg-.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/274915666-5b74dd8ecb2e2_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/3947786617-5b74dd8ec8678_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2505008676-5b74dd8ebad41_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/3288535670-5b74dd8ea12d9_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/3410060825-5b74dd8ea12d9_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/3380216230-5b74dd8e97e85_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1584506777-5b74dd8e82768_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2805401035-5b74dd8e6833c_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/404304980-5b74dd8e7499e_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2106688680-54566fa3d81dc_articlex.jpeg">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/829832336-5b74dd8e3ad9a_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1230266743-5b74dd8e3b0ce_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1858023544-5b74dd8e0813d.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2183873141-5b74dd8e02a4a_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2402253130-5b74dd8dd7621_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1206278247-5b74dd8dd9036_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2492190378-5b74dd8dca608_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/284693590-5b74dd8dc7f3e_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1921976761-5b74dd8daba2d_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/4055109887-5b74dd8db283c_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1200224117-5b74dd8d9453e_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/1617768463-5b74dd8d99843_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2521026104-5b74dd8d6abd6_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2454891415-5b74dd8d67aec_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2023283460-5b74dd8d67aec_articlex.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/796853783-5b74dd8f41e21_articlex.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2018/12/2372262871-5b74dd8da51e5_articlex.gif">
+<meta property="article:published_time" content="2023-04-22T06:50:17.000Z">
+<meta property="article:modified_time" content="2023-04-22T06:54:51.828Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2018/12/Canvas_default_grid.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -69,9 +114,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-canvas" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-canvas" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/04/22/canvas/" class="article-date">
   <time class="dt-published" datetime="2023-04-22T06:50:17.000Z" itemprop="datePublished">2023-04-22</time>
@@ -84,8 +127,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/22/canvas/">canvas</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      canvas
     </h1>
   
 
@@ -546,62 +589,19 @@ red: #ff0000
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/22/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-04-22T06:37:38.609Z" itemprop="datePublished">2023-04-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/22/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2023/04/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/22/hello-world/" data-id="clgrm0ven00000kmf358l4mtj" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
